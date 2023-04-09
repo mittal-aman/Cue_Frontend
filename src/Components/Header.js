@@ -29,6 +29,7 @@ const useStyles = makeStyles(() => ({
         height: '10vh',
         weight: '10vw',
     },
+    
 
 
 }));
@@ -39,6 +40,18 @@ const Header = () => {
   const classes = useStyles();
 
   const {navvalue} = NavState();
+
+  // const location = useLocation();
+
+  // const getCurrentTitle = () => {
+  //   switch (location.pathname) {
+  //     case "/":
+  //     default:
+  //       return "Home page";
+  //     case "/available-data":
+  //       return "Available data";
+  //   }
+  // };
   
 
   return (
@@ -47,7 +60,7 @@ const Header = () => {
         <Grid item xs={6} md={10}>
             <img src={logooo} alt="logo" className={classes.logo} />
         </Grid>
-        <Grid item xs={6} md={2} style={{paddingTop:'2vh'}}>
+        <Grid item xs={6} md={2} style={{paddingTop:'1vh'}}>
             <Typography variant="h5" className={classes.title}>Department of civil & urban Engineering</Typography>
 
         </Grid>

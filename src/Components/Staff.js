@@ -1,8 +1,11 @@
 import React from 'react'
+import Carousel from './Carousel'
 
 const Staff = () => {
   return (
-    <div>Staff</div>
+    <div>
+      <Carousel/>
+    </div>
   )
 }
 
