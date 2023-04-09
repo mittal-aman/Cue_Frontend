@@ -1,12 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
+import { NavState } from '../Contextapi';
+
 
 
 import logooo from '../images/logo.png';
@@ -16,11 +14,13 @@ const useStyles = makeStyles(() => ({
     gridmain1:{
         background:'#330662',
         height:'10vh',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        width: '100%',
     },
     gridmain2:{
         background:'#ab82c5',
         height:'7vh',
+        width: '100%',
         paddingLeft: '5vw',
         paddingTop:'2vh',
         fontWeight: 'bold'
@@ -38,6 +38,9 @@ const useStyles = makeStyles(() => ({
 const Header = () => {
   const classes = useStyles();
 
+  const {navvalue} = NavState();
+  
+
   return (
     <div>
     <Grid container className={classes.gridmain1}>
@@ -52,11 +55,14 @@ const Header = () => {
     <Grid container className={classes.gridmain2}>
 
         <Grid item xs={6} md={10}>
-            <Typography variant="h5"sx={{ fontWeight: 'bold' }} className={classes.title}>Faculty</Typography>
+
+            <Typography variant="h5"sx={{ fontWeight: 'bold' }} className={classes.title}>{navvalue}</Typography>
 
         </Grid>
         <Grid item xs={6} md={2}>
+
             <Typography sx={{ fontWeight: 'bold' }} variant="h5" className={classes.title}>More Information</Typography>
+        
         </Grid>
 
     </Grid>

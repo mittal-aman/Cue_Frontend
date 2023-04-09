@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 //import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@material-ui/core';
-import List from './List';
+import SideNav from './SideNav';
 import {Route, Routes} from 'react-router-dom'
 import Faculty from './Faculty';
 import AreaofStudy from './AreaofStudy';
@@ -53,7 +53,7 @@ const Main = () => {
           <div >
             <Routes>
                 <Route path='/' element={<Faculty/>} />
-                <Route exact path='/cue/aos' element={<AreaofStudy/>} />
+                <Route exact path='/cue/aos' element={<AreaofStudy data={{name:'Area of Study'}}/>} />
                 <Route exact path='/cue/rg' element={<Research/>} />
                 <Route exact path='/cue/fd' element={<Faculty/>} />
                 <Route exact path='/cue/sd' element={<Staff/>} />
@@ -65,7 +65,7 @@ const Main = () => {
         </Grid>
         <Grid item xs={3} className={classes.grid2}>
         <div>
-            <List />
+            <SideNav />
         </div>
         </Grid>
       </Grid>

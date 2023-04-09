@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import { NavState } from '../Contextapi';
 
 
 
@@ -25,6 +27,8 @@ const useStyle =  makeStyles(()=>({
 
 const List = () => {
 
+    const {navvalue, setNavvalue} = NavState(); 
+
     const classes = useStyle();
   return (
     <div>
@@ -40,34 +44,65 @@ const List = () => {
         >
 
             <Grid item className={classes.grid} xs={12}>
-                <div>
-                    <NavLink to='/cue/aos'>AreaofStudy</NavLink>
-                </div>
+            <Button
+                onClick={() => setNavvalue("Area of Study")}>
+               
+                <NavLink to='/cue/aos'>Area of Study</NavLink>
+
+            </Button>
+                
             </Grid>
             <Grid item className={classes.grid} xs={12}>
+            <Button
+                onClick={() => setNavvalue("Research Group")}>
+                
                 <div>
                     <NavLink to='/cue/rg'>Research Group</NavLink>
                 </div>
+            </Button>    
             </Grid>
             <Grid item className={classes.grid} xs={12}>
+            <Button
+                onClick={() => setNavvalue("Faculty Directory")}>
+                
                 <div>
                     <NavLink to='/cue/fd'>Faculty Directory</NavLink>
+
                 </div>
+            </Button> 
+                
             </Grid>
             <Grid item className={classes.grid} xs={12}>
+            <Button
+                onClick={() => setNavvalue("Student Club")} >
+                
                 <div>
                     <NavLink to='/cue/sc'>Student Club</NavLink>
+
                 </div>
+            </Button> 
+                
             </Grid>
             <Grid item className={classes.grid} xs={12}>
+            <Button
+                onClick={() => setNavvalue("Department Map")} >
+                
                 <div>
-                    <NavLink to='/cue/dp'>Department Map</NavLink>
+                   <NavLink to='/cue/dp'>Department Map</NavLink>
                 </div>
+            </Button> 
+               
             </Grid>
+
             <Grid item className={classes.grid} xs={12}>
+            <Button
+                onClick={() => setNavvalue("Events")}       
+                >
                 <div>
                     <NavLink to='/cue/e'>Events</NavLink>
                 </div>
+            </Button> 
+                
             </Grid>
 
             
