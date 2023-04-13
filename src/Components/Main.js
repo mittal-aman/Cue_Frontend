@@ -1,15 +1,18 @@
 import * as React from "react";
+import  { useState,useEffect } from 'react'
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@material-ui/core";
 import SideNav from "./SideNav";
 import { Route, Routes } from "react-router-dom";
 import Faculty from "./Faculty";
-import AreaofStudy from "./AreaofStudy";
+import AreaofStudy from "./Area of Study/AreaofStudy";
 import Research from "./Research";
 import Staff from "./Staff";
 import StudentClub from "./StudentClub";
 import DepartmentMap from "./DepartmentMap";
 import Event from "./Event";
+import {useNavigate} from 'react-router-dom'
+
 
 const useStyle = makeStyles(() => ({
   box: {
@@ -34,8 +37,12 @@ const useStyle = makeStyles(() => ({
   },
 }));
 
+
+
 const Main = () => {
   const classes = useStyle();
+
+  
 
   return (
     <Grid container className={classes.gridcon}>
@@ -45,7 +52,7 @@ const Main = () => {
             <Route
               exact
               path="/cue/aos"
-              element={<AreaofStudy data={{ name: "Area of Study" }} />}
+              element={<AreaofStudy />}
             />
             <Route exact path="/cue/rg" element={<Research />} />
             <Route exact path="/cue/fd" element={<Faculty />} />

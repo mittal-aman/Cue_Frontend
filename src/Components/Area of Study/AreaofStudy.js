@@ -1,22 +1,22 @@
 import React from 'react'
 import  { useState,useEffect } from 'react'
+import {useNavigate} from 'react-router-dom'
 
-  import {useNavigate} from 'react-router-dom'
 
-const DepartmentMap = () => {
+
+const AreaofStudy = () => {
 
   const navigate = useNavigate()
 
   useEffect(() => {
     setTimeout(() => {
       navigate('/')
-    }, 10000)
+    }, 5000)
   }, [])
+
   return (
-
-    <div>DepartmentMap</div>
-
+    <div>AreaofStudy</div>
   )
 }
 
-export default DepartmentMap
+export default AreaofStudy

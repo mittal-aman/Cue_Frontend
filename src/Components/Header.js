@@ -4,6 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { NavState } from '../Contextapi';
+import { useLocation } from "react-router-dom";
+
 
 
 
@@ -12,7 +14,7 @@ import logooo from '../images/logo.png';
 const useStyles = makeStyles(() => ({
 
     gridmain1:{
-        background:'#330662',
+        background:'#4A126F',
         height:'10vh',
         fontWeight: 'bold',
         width: '100%',
@@ -37,21 +39,35 @@ const useStyles = makeStyles(() => ({
 
 
 const Header = () => {
+  
   const classes = useStyles();
 
   const {navvalue} = NavState();
 
-  // const location = useLocation();
+  const location = useLocation();
 
-  // const getCurrentTitle = () => {
-  //   switch (location.pathname) {
-  //     case "/":
-  //     default:
-  //       return "Home page";
-  //     case "/available-data":
-  //       return "Available data";
-  //   }
-  // };
+  const getCurrentTitle = () => {
+    switch (location.pathname) {
+      case "/":
+      default:
+        return "Faculty";
+      case "/cue/aos":
+        return "Area Of Study";
+      case "/cue/rg":
+        return "Research Group";
+      case "/cue/fd":
+        return "Faculty Directory";
+      case "/cue/s":
+        return "Staff Directory";
+      case "/cue/sc":
+        return "Student Club";
+      case "/cue/dp":
+        return "Department Map";
+      case "/cue/e":
+        return "Events";  
+
+    }
+  };
   
 
   return (
@@ -69,7 +85,7 @@ const Header = () => {
 
         <Grid item xs={6} md={10}>
 
-            <Typography variant="h5"sx={{ fontWeight: 'bold' }} className={classes.title}>{navvalue}</Typography>
+            <Typography variant="h5"sx={{ fontWeight: 'bold' }} className={classes.title}>{getCurrentTitle()}</Typography>
 
         </Grid>
         <Grid item xs={6} md={2}>

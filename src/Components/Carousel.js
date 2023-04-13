@@ -14,10 +14,13 @@ const useStyle = makeStyles(() =>({
     },
     div_box:{
       height: '30vh',
-      width: '10vw',
+      width: '10 vw',
       background: '#eee6f3',
-      margin: '40px',
-      border: '1px solid #ab82c5'
+      margin: '40px 0px',
+      border: '1px solid #ab82c5',
+
+    //   offset: '10px 30px',
+
     },
 }))
 
@@ -29,7 +32,6 @@ const Carousel=()=> {
 
   const settings = {
       
-    
     centerMode: true,
     centerPadding: "0px",
     speed: 500,
