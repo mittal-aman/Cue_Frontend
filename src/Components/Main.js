@@ -12,6 +12,7 @@ import StudentClub from "./StudentClub";
 import DepartmentMap from "./DepartmentMap";
 import Event from "./Event";
 import {useNavigate} from 'react-router-dom'
+import AlertDialog from "./AlertBox";
 
 
 const useStyle = makeStyles(() => ({
@@ -39,8 +40,16 @@ const useStyle = makeStyles(() => ({
 
 
 
-const Main = () => {
+const Main = (props) => {
   const classes = useStyle();
+
+  // const navigate = useNavigate()
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     <AlertDialog/>
+  //   }, 3000)
+  // }, [])
 
   
 
@@ -49,14 +58,10 @@ const Main = () => {
       <Grid item xs={9} className={classes.grid1}>
           <Routes>
             <Route path="/" element={<Faculty />} />
-            <Route
-              exact
-              path="/cue/aos"
-              element={<AreaofStudy />}
-            />
+            <Route exact path="/cue/aos"element={<AreaofStudy />}/>            
             <Route exact path="/cue/rg" element={<Research />} />
             <Route exact path="/cue/fd" element={<Faculty />} />
-            <Route exact path="/cue/s" element={<Staff />} />
+            <Route exact path="/cue/s"  element={<Staff />} />
             <Route exact path="/cue/sc" element={<StudentClub />} />
             <Route exact path="/cue/dp" element={<DepartmentMap />} />
             <Route exact path="/cue/e" element={<Event />} />
@@ -64,8 +69,11 @@ const Main = () => {
       </Grid>
       <Grid item xs={3} className={classes.grid2}>
           <SideNav />
-      </Grid>
+      </Grid>{}
+      
+      <AlertDialog/>
     </Grid>
+
   );
 };
 

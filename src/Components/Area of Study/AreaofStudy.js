@@ -8,11 +8,11 @@ const AreaofStudy = () => {
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    setTimeout(() => {
-      navigate('/')
-    }, 5000)
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     navigate('/')
+  //   }, 5000)
+  // }, [])
 
   return (
     <div>AreaofStudy</div>

@@ -5,13 +5,13 @@ import  { useState,useEffect } from 'react'
 
 const DepartmentMap = () => {
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  useEffect(() => {
-    setTimeout(() => {
-      navigate('/')
-    }, 10000)
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     navigate('/')
+  //   }, 100)
+  // }, [])
   return (
 
     <div>DepartmentMap</div>
