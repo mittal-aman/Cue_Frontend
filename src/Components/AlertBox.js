@@ -27,7 +27,7 @@ const AlertBox =(props)=> {
   }
 
   const gomain = () =>{
-    navigate('/')
+    navigate('/') 
     setOpen(false);
   }
 
@@ -35,7 +35,7 @@ const AlertBox =(props)=> {
     crossTab: true,
     ref: idleTimerRef,
     onIdle: onIdle,
-    timeout: 7*1000
+    timeout: 20*1000
   })
 
   const handleClose = () => { 

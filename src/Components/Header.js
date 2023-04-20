@@ -65,7 +65,6 @@ const Header = () => {
         return "Department Map";
       case "/cue/e":
         return "Events";  
-
     }
   };
   

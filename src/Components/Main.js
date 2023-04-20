@@ -11,7 +11,7 @@ import Staff from "./Staff";
 import StudentClub from "./StudentClub";
 import DepartmentMap from "./DepartmentMap";
 import Event from "./Event";
-import {useNavigate} from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 import AlertDialog from "./AlertBox";
 
 
@@ -27,13 +27,13 @@ const useStyle = makeStyles(() => ({
   grid1: {
     height: "83vh",
     width: "100%",
-    background:'#702b9d',
+    background:'#541182',
     borderRight: "6px solid #ab82c5",
   },
   grid2: {
     height: "83vh",
     width: "100%",
-    background: "#702b9d",
+    background: "#541182",
     borderLeft: "6px solid #ab82c5",
   },
 }));
@@ -43,16 +43,15 @@ const useStyle = makeStyles(() => ({
 const Main = (props) => {
   const classes = useStyle();
 
-  // const navigate = useNavigate()
+  const location = useLocation();
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     <AlertDialog/>
-  //   }, 3000)
-  // }, [])
-
-  
-
+  const getCurrentTitle = () => {
+    switch (location.pathname) {
+      case "/":
+      default:
+        return "Faculty";
+    }
+  };
   return (
     <Grid container className={classes.gridcon}>
       <Grid item xs={9} className={classes.grid1}>
@@ -69,9 +68,13 @@ const Main = (props) => {
       </Grid>
       <Grid item xs={3} className={classes.grid2}>
           <SideNav />
-      </Grid>{}
+      </Grid>
+      {!(getCurrentTitle === "Faculty") ? (
+          <AlertDialog/>
+        ) : null
+      }
+
       
-      <AlertDialog/>
     </Grid>
 
   );

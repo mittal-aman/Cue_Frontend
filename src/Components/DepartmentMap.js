@@ -5,7 +5,7 @@ import  { useState,useEffect } from 'react'
 
 const DepartmentMap = () => {
 
-  // const navigate = useNavigate()
+   const navigate = useNavigate()
 
   // useEffect(() => {
   //   setTimeout(() => {
