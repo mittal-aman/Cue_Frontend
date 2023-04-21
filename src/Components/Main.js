@@ -45,13 +45,7 @@ const Main = (props) => {
 
   const location = useLocation();
 
-  const getCurrentTitle = () => {
-    switch (location.pathname) {
-      case "/":
-      default:
-        return "Faculty";
-    }
-  };
+  
   return (
     <Grid container className={classes.gridcon}>
       <Grid item xs={9} className={classes.grid1}>
@@ -69,7 +63,7 @@ const Main = (props) => {
       <Grid item xs={3} className={classes.grid2}>
           <SideNav />
       </Grid>
-      {!(getCurrentTitle === "Faculty") ? (
+      {location.pathname !== "/" ? (
           <AlertDialog/>
         ) : null
       }

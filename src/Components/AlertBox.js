@@ -35,7 +35,7 @@ const AlertBox =(props)=> {
     crossTab: true,
     ref: idleTimerRef,
     onIdle: onIdle,
-    timeout: 20*1000
+    timeout: 30*1000
   })
 
   const handleClose = () => { 

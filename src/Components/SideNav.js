@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useNavigate} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
@@ -10,7 +10,7 @@ const useStyle = makeStyles(() => ({
   grid_main: {
     // width: "5vw",
     // height: "55vh",
-    paddingLeft: "3em",
+    paddingLeft: "2em",
     paddingTop: "3em",
     
   },
@@ -36,13 +36,17 @@ const useStyle = makeStyles(() => ({
     display: "flex",
     alignItems:'center',
     justifyContent: 'center',
+    fontWeight: 'bold',
+    fontSize:'1.4vw'
   }
 }));
 
 const List = () => {
     const navigate = useNavigate();
+    
 
   const { navvalue, setNavvalue } = NavState();
+  const location = useLocation();
 
   const classes = useStyle();
   return (
@@ -103,7 +107,7 @@ const List = () => {
             </div>
           </Button>
         </Grid>
-        {!(navvalue === "Faculty") ? (
+        {location.pathname !== "/" ? (
           <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
             <Button onClick={() => setNavvalue("Faculty")}>
               <div>
@@ -114,7 +118,7 @@ const List = () => {
         ) : null}
       </Grid>
               <br /> <br /> <br />
-      {!(navvalue === "Faculty") ? (
+      {location.pathname !== "/" ? (
 
           <Grid item className={classes.prev} xs={12}>
               

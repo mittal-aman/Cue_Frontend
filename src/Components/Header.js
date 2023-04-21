@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 
 
 import logooo from '../images/logo.png';
+import { color } from '@mui/system';
 
 const useStyles = makeStyles(() => ({
 
@@ -24,13 +25,19 @@ const useStyles = makeStyles(() => ({
         height:'7vh',
         width: '100%',
         paddingLeft: '5vw',
-        paddingTop:'2vh',
-        fontWeight: 'bold'
+        paddingTop:'1.6vh',
+        fontWeight: 'bold',
+        fontSize:'7vw'
     },
     logo:{
         height: '10vh',
         weight: '10vw',
     },
+    title:{
+      fontWeight: 'bold',
+      fontSize:'1.6vw',
+      color:'black',
+    }
     
 
 
@@ -76,7 +83,7 @@ const Header = () => {
             <img src={logooo} alt="logo" className={classes.logo} />
         </Grid>
         <Grid item xs={6} md={2} style={{paddingTop:'1vh'}}>
-            <Typography variant="h5" className={classes.title}>Department of civil & urban Engineering</Typography>
+            <Typography variant="h5" style={{color:'white'}} className={classes.title}>Department of civil & urban Engineering</Typography>
 
         </Grid>
     </Grid>
@@ -84,12 +91,12 @@ const Header = () => {
 
         <Grid item xs={6} md={10}>
 
-            <Typography variant="h5"sx={{ fontWeight: 'bold' }} className={classes.title}>{getCurrentTitle()}</Typography>
+            <Typography sx={{ fontWeight: 'bold' }} className={classes.title}>{getCurrentTitle()}</Typography>
 
         </Grid>
         <Grid item xs={6} md={2}>
 
-            <Typography sx={{ fontWeight: 'bold' }} variant="h5" className={classes.title}>More Information</Typography>
+            <Typography sx={{ fontWeight: 'bold' }} className={classes.title}>More Information</Typography>
         
         </Grid>
 
