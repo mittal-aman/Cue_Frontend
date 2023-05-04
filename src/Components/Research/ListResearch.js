@@ -38,12 +38,18 @@ const ListAos = () => {
   return (
   
     <List className={classes.mainList}>
+      <h1 style={{textAlign:'center'}}>  Please select the Group</h1>
       {mydata?.map((movies) => {
             const {id,title} = movies;
-      return(      
-      <ListItem button component={Link} key={id} to={`/cue/aos/${id}`} className={classes.list}>
-        <ListItemText primary={title} />
-      </ListItem>
+      return(     
+       
+      
+          <ListItem button component={Link} key={id} to={`/cue/aos/${id}`} className={classes.list}>
+            <h4>{id}</h4> &nbsp; &nbsp; &nbsp;
+            <ListItemText primary={title} />
+          </ListItem>
+        
+     
       )
     })}
     </List>

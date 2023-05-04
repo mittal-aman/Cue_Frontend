@@ -72,8 +72,7 @@ const List = () => {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        borderRadius='20px'
-        borderTopRightRadius='20px'
+        
         className={classes.grid_main}
       >
         <Grid item className={classes.grid} xs={12} style={{background:'#541182',}}>

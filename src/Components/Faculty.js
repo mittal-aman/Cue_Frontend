@@ -19,7 +19,7 @@ const useStyle = makeStyles(() =>({
       width: '90%',
       height: '79vh',
       margin: 'auto',
-      overflow: 'hidden',      
+           
     },
 
     div_box:{
@@ -57,11 +57,11 @@ const Faculty=()=> {
   const classes = useStyle();
 
   const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
-    <img src={LeftArrow} alt="prevArrow" {...props} style={{height:'50px',width:"40px",left: '-2.7vw',}}/>
+    <img src={LeftArrow} alt="prevArrow" {...props} style={{height:'40px',width:"30px",left: '-2.7vw',}}/>
   );
 
   const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
-    <img src={RightArrow} alt="nextArrow" {...props} style={{height:'50px',width:"40px",right: '-2.7vw',}}/>
+    <img src={RightArrow} alt="nextArrow" {...props} style={{height:'40px',width:"30px",right: '-2.7vw',}}/>
   );
 
 

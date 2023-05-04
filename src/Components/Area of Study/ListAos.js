@@ -12,20 +12,9 @@ import { NavState } from "../../Contextapi";
 const useStyle = makeStyles(()=>({
   mainList:{
     overflow: 'auto',height:'79vh',
-    textAlign:'center',width: '60%',
-    margin:'auto',
+    
   },
-  list:{
-    textAlign:'center',
-
-  },
-  innerList:{
-    textAlign:'center',
-    border: '3px solid red',
-    
-    
-    
-  }
+  
 }))
 
 
@@ -62,10 +51,12 @@ const ListAos = () => {
   return (
   
     <List className={classes.mainList}>
+      <h1 style={{textAlign:'center'}}>  Please select the Department</h1>
       {mydata?.map((movies) => {
             const {id,title} = movies;
       return(      
       <ListItem button component={Link} key={id} to={`/cue/aos/${id}`} className={classes.list} onClick={() => navigateToMenu(title)}>
+        <h4>{id}</h4> &nbsp; &nbsp; &nbsp;
         <ListItemText primary={title} className={classes.innerList} />
       </ListItem>
       )
