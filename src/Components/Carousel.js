@@ -52,7 +52,7 @@ const Carousel=()=> {
   const getteacherdata = async () => {
 
     await axios.get("http://128.122.136.144:8080/CUE/F").then((response) => {
-      console.log(response.data)
+      console.log(response.data.deptName);
       // console.log(typeof response.data[0].movies);
       // setMydata(response.data[0].movies)
       // console.log(typeof response.data[0].movies);

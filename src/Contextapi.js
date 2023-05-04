@@ -5,6 +5,7 @@ export const NavItem = createContext();
 const Contextapi = (props) => {
 
     const [navvalue, setNavvalue] = useState(['Faculty']);
+    // const [deptName, setdeptName] = useState('Department of civil & urban Engineering');
   return (
     <NavItem.Provider value={{ navvalue, setNavvalue}}>
       {props.children}

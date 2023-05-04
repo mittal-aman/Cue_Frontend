@@ -3,11 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { NavState } from '../Contextapi';
 import { useLocation } from "react-router-dom";
 import {NavItem} from '../Contextapi';
-import { useContext } from 'react';
-
+import { useContext,useState,useEffect } from 'react';
+import axios from "axios";
 
 
 import logooo from '../images/logo.png';
@@ -28,7 +27,8 @@ const useStyles = makeStyles(() => ({
         paddingRight: '5vw',
         paddingTop:'1.6vh',
         fontWeight: 'bold',
-        fontSize:'7rem'
+        fontSize:'7rem',
+        color:'black',
     },
     logo:{
         height: '10vh',
@@ -59,6 +59,20 @@ const useStyles = makeStyles(() => ({
 const Header = () => {
   
   const classes = useStyles();
+  
+  const [deptName, setDeptName] = useState('')
+
+
+
+  const getDeptName = async () =>{
+    await axios.get("http://128.122.136.144:8080/CUE/F").then((response) => {
+      setDeptName(response.data.deptName)
+    })
+  }
+
+  useEffect(()=>{
+    getDeptName();
+  },[])
 
   
 
@@ -94,11 +108,11 @@ const Header = () => {
   return (
     <div>
     <Grid container className={classes.gridmain1}>
-        <Grid item xs={6} md={10}>
+        <Grid item xs={6} md={9}>
             <img src={logooo} alt="logo" className={classes.logo} />
         </Grid>
-        <Grid item xs={6} md={2} style={{paddingTop:'1vh'}}>
-            <Typography variant="h5" style={{color:'white'}} className={classes.title}>Department of civil & urban Engineering</Typography>
+        <Grid item xs={6} md={3} style={{paddingTop:'1vh'}}>
+            <Typography variant="h5" style={{color:'white'}} className={classes.title}>DEPARTMENT OF {deptName}</Typography>
 
         </Grid>
     </Grid>
@@ -106,14 +120,14 @@ const Header = () => {
 
         <Grid item xs={6} md={10}>
 
-            <Typography sx={{ fontWeight: 'bold', }} className={classes.title_topic}>
+            <Typography sx={{ fontWeight: 'bold',}} className={classes.title_topic}>
               {lastValue}
               </Typography>
 
         </Grid>
         <Grid item xs={6} md={2}>
 
-            <Typography sx={{ fontWeight: 'bold' }} className={classes.title}>More Information</Typography>
+            <Typography sx={{ fontWeight: 'bold', }} className={classes.title}>More Information</Typography>
         
         </Grid>
 

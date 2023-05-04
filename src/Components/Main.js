@@ -15,7 +15,7 @@ import {useLocation} from 'react-router-dom'
 import AlertDialog from "./AlertBox";
 import ListAos from "./Area of Study/ListAos";
 import ListResearch from "./Research/ListResearch";
-
+import axios from "axios";
 
 const useStyle = makeStyles(() => ({
   box: {
@@ -47,14 +47,26 @@ const Main = () => {
 
   const location = useLocation();
 
+
+  const getFaculty = async () => {
+    await axios.get("http://128.122.136.144:8080/CUE/F").then((response) => {
+      console.log(response.data.deptName);
+      // console.log(typeof response.data[0].movies);
+      // setMydata(response.data[0].movies)
+      // console.log(typeof response.data[0].movies);
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
   
   return (
     <Grid container className={classes.gridcon}>
       <Grid item xs={9} className={classes.grid1}>
           <Routes>
             <Route path="/" element={<Faculty />} />
-            <Route exact path="/cue/aos"element={<ListAos />}/>
-            <Route exact path="/cue/aos/:id"element={<AreaofStudy />}/>    
+            <Route exact path="/cue/aos" element={<ListAos />}/>
+            <Route exact path="/cue/aos/:id" element={<AreaofStudy />}/>    
             <Route exact path="/cue/rg/" element={<ListResearch />} />
        
             <Route exact path="/cue/rg/:id" element={<Research />} />

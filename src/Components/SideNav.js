@@ -10,8 +10,10 @@ const useStyle = makeStyles(() => ({
   grid_main: {
     // width: "5vw",
     // height: "55vh",
-    paddingLeft: "2em",
+    paddingLeft: "1em",
+    paddingRight: "1em",
     paddingTop: "3em",
+    
     
   },
   grid: {
@@ -21,6 +23,9 @@ const useStyle = makeStyles(() => ({
     height: "7vh",
     display: "flex",
     alignItems: "center",
+    borderRadius: "6px"
+    
+    
   },
   // button:{
   //   height:100%
@@ -28,6 +33,7 @@ const useStyle = makeStyles(() => ({
 
   prevButton:{
     backgroundColor: '#3f0d60',
+    borderRadius: '20px',
     padding: '17px 60px',
     cursor: 'pointer',
     borderColor:'#d8b1f3',
@@ -52,7 +58,7 @@ const List = () => {
     navvalue.pop();
     setNavvalue(navvalue); 
   };
-  
+
   const navigateToMenu = (navigationName) => {
     navvalue.push(navigationName)
     setNavvalue(navvalue);
@@ -66,9 +72,11 @@ const List = () => {
         direction="row"
         justifyContent="center"
         alignItems="center"
+        borderRadius='20px'
+        borderTopRightRadius='20px'
         className={classes.grid_main}
       >
-        <Grid item className={classes.grid} xs={12} style={{background:'#541182'}}>
+        <Grid item className={classes.grid} xs={12} style={{background:'#541182',}}>
           <Button onClick={() => navigateToMenu('Area of Study')} className={classes.button}>
             <NavLink style={{ textDecoration: 'none',background:'#541182', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/aos">Area of Study</NavLink>
           </Button>

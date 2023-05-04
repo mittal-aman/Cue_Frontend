@@ -1,16 +1,7 @@
 import axios from "axios";
 
-export const baseUrl = "https://20.10.22.22"; //testing server
-// export const baseUrl = "https://20.10.22.22"; //production server
-
-axios.interceptors.response.use(
-  function (response) {
-    return response;
-  },
-  function (error) {
-    return Promise.reject(error);
-  }
-);
+const baseUrl = "http://128.122.136.144:8080"; // testURL
+// const baseUrl = "http://128.122.136.144:8080"; // prodURL
 
 const responseBody = (response) => response.data;
 
@@ -19,11 +10,12 @@ export const requests = {
   post: (url, body, header) => axios.post(url, body, header).then(responseBody),
 }
 
-const TandonSchoolApis = {
-  getFaculty: (headers) => requests.get(`${baseUrl}/getFaculty`, headers),
+const API = {
+  getFaculty: (headers) => requests.get(`${baseUrl}/CUE/F`, headers),
   getFacultyById: (id, headers) => requests.get(`${baseUrl}/getFaculty/${id}`, headers),
+  getStaff: (headers) => requests.get(`${baseUrl}/CUE/S`, headers),
 };
 
-export default {
-    TandonSchoolApis
+export {
+  API
 };
