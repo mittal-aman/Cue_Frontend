@@ -42,13 +42,23 @@ const useStyle = makeStyles(() => ({
 }));
 
 const List = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
     
-
   const { navvalue, setNavvalue } = NavState();
+
   const location = useLocation();
 
+  const reverseData = () => {
+    navvalue.pop();
+    setNavvalue(navvalue); 
+  };
+  
+  const navigateToMenu = (navigationName) => {
+    navvalue.push(navigationName)
+    setNavvalue(navvalue);
+  }
   const classes = useStyle();
+
   return (
     <div>
       <Grid
@@ -59,40 +69,40 @@ const List = () => {
         className={classes.grid_main}
       >
         <Grid item className={classes.grid} xs={12} style={{background:'#541182'}}>
-          <Button onClick={() => setNavvalue("Area of Study")} className={classes.button}>
+          <Button onClick={() => navigateToMenu('Area of Study')} className={classes.button}>
             <NavLink style={{ textDecoration: 'none',background:'#541182', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/aos">Area of Study</NavLink>
           </Button>
         </Grid>
         <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
-          <Button onClick={() => setNavvalue("Research Group")}>
+          <Button onClick={() => navigateToMenu("Research Group")}>
             <div>
               <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/rg">Research Group</NavLink>
             </div>
           </Button>
         </Grid>
         <Grid item className={classes.grid} xs={12} style={{background:'#541182'}}>
-          <Button onClick={() => setNavvalue("Faculty Directory")}>
+          <Button onClick={() => navigateToMenu("Faculty Directory")}>
             <div>
               <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/fd">Faculty Directory</NavLink>
             </div>
           </Button>
         </Grid>
         <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
-          <Button onClick={() => setNavvalue("Staff Directory")} >
+          <Button onClick={() => navigateToMenu("Staff Directory")}>
             <div>
               <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/s">Staff Directory</NavLink>
             </div>
           </Button>
         </Grid>
         <Grid item className={classes.grid} xs={12} style={{background:'#541182'}}>
-          <Button onClick={() => setNavvalue("Student Club")}>
+          <Button onClick={() => navigateToMenu("Student Club")}>
             <div>
               <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/sc">Student Club</NavLink>
             </div>
           </Button>
         </Grid>
         <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
-          <Button onClick={() => setNavvalue("Department Map")} >
+          <Button onClick={() => navigateToMenu("Department Map")} >
             <div>
               <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/dp">Department Map</NavLink>
             </div>
@@ -101,7 +111,7 @@ const List = () => {
 
         <Grid item className={classes.grid} xs={12} style={{background:'#541182'}}>
           
-          <Button onClick={() => setNavvalue("Events")}>
+          <Button onClick={() => navigateToMenu("Events")}>
             <div>
               <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/e">Events</NavLink>
             </div>
@@ -109,7 +119,7 @@ const List = () => {
         </Grid>
         {location.pathname !== "/" ? (
           <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
-            <Button onClick={() => setNavvalue("Faculty")}>
+            <Button onClick={() => navigateToMenu("Faculty")}>
               <div>
                 <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/">Main Menu</NavLink>
               </div>
@@ -122,7 +132,7 @@ const List = () => {
 
           <Grid item className={classes.prev} xs={12}>
               
-                <button onClick={() => {navigate(-1);}} className={classes.prevButton}>
+                <button onClick={() => {navigate(-1);reverseData();}} className={classes.prevButton}>
                   Prev.Page
                 </button>
               

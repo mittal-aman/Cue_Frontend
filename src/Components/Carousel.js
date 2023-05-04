@@ -5,6 +5,11 @@ import Slider from "react-slick";
 import { makeStyles } from '@material-ui/core/styles';
 import RightArrow from '../images/RightArrow.png';
 import LeftArrow from '../images/LeftArrow.png';
+import  { useState,useEffect } from 'react'
+import axios from "axios";
+import api from '../Api/apiWrapper';
+
+
 
 
 
@@ -19,7 +24,8 @@ const useStyle = makeStyles(() =>({
 
     div_box:{
       height: '30vh',
-      width: '10 vw',
+      // paddingBottom: '3vh',
+      width: '10vw',
       background: '#eee6f3',
       margin: '40px 0px',
       border: '1px solid #ab82c5',
@@ -30,14 +36,42 @@ const useStyle = makeStyles(() =>({
 
 const Carousel=()=> {
 
+  const [mydata, setMydata] = useState();
+  // const [isError, setIsError] = useState("");
+  
+  // const getteacherdata = async () => {
+  //   try {
+  //     const res = await axios.get("https://gautamth1254.github.io/Movie-json/db.json");
+  //     console.log(res.data.movies);
+  //     setMydata(res.data.movies)
+  //   }
+  //   catch(error){
+  //     console.log(error.message);
+  //   }
+  // }
+  const getteacherdata = async () => {
+
+    await axios.get("http://128.122.136.144:8080/CUE/F").then((response) => {
+      console.log(response.data)
+      // console.log(typeof response.data[0].movies);
+      // setMydata(response.data[0].movies)
+      // console.log(typeof response.data[0].movies);
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+  useEffect(()=>{
+    getteacherdata();
+  },[])
+
   const classes = useStyle();
 
   const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
-    <img src={LeftArrow} alt="prevArrow" {...props} style={{height:'50px',width:"40px"}}/>
+    <img src={LeftArrow} alt="prevArrow" {...props} style={{height:'50px',width:"40px",left: '-2.7vw',}}/>
   );
 
   const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
-    <img src={RightArrow} alt="nextArrow" {...props} style={{height:'50px',width:"40px"}}/>
+    <img src={RightArrow} alt="nextArrow" {...props} style={{height:'50px',width:"40px",right: '-2.7vw',}}/>
   );
 
 
@@ -58,55 +92,20 @@ const Carousel=()=> {
     <div>
        
         <Slider {...settings} className={classes.slider}>
-          <div className={classes.div_box}>
-            <h3>1</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>2</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>3</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>4</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>5</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>6</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>7</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>8</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>9</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>10</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>11</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>12</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>13</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>14</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>15</h3>
-          </div>
-          <div className={classes.div_box}>
-            <h3>16</h3>
-          </div>
-          
+       
+          {mydata?.map((movies) => {
+            
+            const {id,posterUrl,title} = movies;
+            
+            return(
+              
+              <div className={classes.div_box} key={id}>
+                  <img src={posterUrl} alt='teacher1' style={{height: '30vh',width: '16.8vw',}} />
+                  <h1 style={{textAlign: 'center',margin: 'auto',fontSize:'1.2vw',paddingTop:'1vh',}}>{title}</h1>
+              </div>
+            )
+          })}
+           
           
         </Slider>
       </div>

@@ -6,13 +6,15 @@ import SideNav from "./SideNav";
 import { Route, Routes } from "react-router-dom";
 import Faculty from "./Faculty";
 import AreaofStudy from "./Area of Study/AreaofStudy";
-import Research from "./Research";
+import Research from "./Research/ResearchGroup";
 import Staff from "./Staff";
 import StudentClub from "./StudentClub";
 import DepartmentMap from "./DepartmentMap";
 import Event from "./Event";
 import {useLocation} from 'react-router-dom'
 import AlertDialog from "./AlertBox";
+import ListAos from "./Area of Study/ListAos";
+import ListResearch from "./Research/ListResearch";
 
 
 const useStyle = makeStyles(() => ({
@@ -40,7 +42,7 @@ const useStyle = makeStyles(() => ({
 
 
 
-const Main = (props) => {
+const Main = () => {
   const classes = useStyle();
 
   const location = useLocation();
@@ -51,8 +53,11 @@ const Main = (props) => {
       <Grid item xs={9} className={classes.grid1}>
           <Routes>
             <Route path="/" element={<Faculty />} />
-            <Route exact path="/cue/aos"element={<AreaofStudy />}/>            
-            <Route exact path="/cue/rg" element={<Research />} />
+            <Route exact path="/cue/aos"element={<ListAos />}/>
+            <Route exact path="/cue/aos/:id"element={<AreaofStudy />}/>    
+            <Route exact path="/cue/rg/" element={<ListResearch />} />
+       
+            <Route exact path="/cue/rg/:id" element={<Research />} />
             <Route exact path="/cue/fd" element={<Faculty />} />
             <Route exact path="/cue/s"  element={<Staff />} />
             <Route exact path="/cue/sc" element={<StudentClub />} />

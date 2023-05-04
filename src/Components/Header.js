@@ -5,12 +5,12 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { NavState } from '../Contextapi';
 import { useLocation } from "react-router-dom";
-
+import {NavItem} from '../Contextapi';
+import { useContext } from 'react';
 
 
 
 import logooo from '../images/logo.png';
-import { color } from '@mui/system';
 
 const useStyles = makeStyles(() => ({
 
@@ -25,22 +25,33 @@ const useStyles = makeStyles(() => ({
         height:'7vh',
         width: '100%',
         paddingLeft: '5vw',
+        paddingRight: '5vw',
         paddingTop:'1.6vh',
         fontWeight: 'bold',
-        fontSize:'7vw'
+        fontSize:'7rem'
     },
     logo:{
         height: '10vh',
         weight: '10vw',
+        maxWidth: '50%'
     },
     title:{
+      margin: 'auto',
+      display: "flex",
+      alignItems:'center',
+      justifyContent: 'center',
       fontWeight: 'bold',
-      fontSize:'1.6vw',
-      color:'black',
+      fontSize:'1.4vw'
+    },
+    title_topic:{
+      margin: 'auto',
+      display: "flex",
+      alignItems:'start',
+      justifyContent: 'start',
+      fontWeight: 'bold',
+      fontSize:'1.4vw'
     }
     
-
-
 }));
 
 
@@ -49,7 +60,7 @@ const Header = () => {
   
   const classes = useStyles();
 
-  const {navvalue} = NavState();
+  
 
   const location = useLocation();
 
@@ -74,6 +85,10 @@ const Header = () => {
         return "Events";  
     }
   };
+
+  const { navvalue } = useContext(NavItem);
+
+  const lastValue = navvalue[navvalue.length - 1];
   
 
   return (
@@ -91,7 +106,9 @@ const Header = () => {
 
         <Grid item xs={6} md={10}>
 
-            <Typography sx={{ fontWeight: 'bold' }} className={classes.title}>{getCurrentTitle()}</Typography>
+            <Typography sx={{ fontWeight: 'bold', }} className={classes.title_topic}>
+              {lastValue}
+              </Typography>
 
         </Grid>
         <Grid item xs={6} md={2}>

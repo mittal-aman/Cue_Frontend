@@ -1,13 +1,13 @@
 import React, { createContext,useState ,useContext } from 'react'
 
-const NavItem = createContext();
+export const NavItem = createContext();
 
-const Contextapi = ({children}) => {
+const Contextapi = (props) => {
 
-    const [navvalue, setNavvalue] = useState("Faculty");
+    const [navvalue, setNavvalue] = useState(['Faculty']);
   return (
     <NavItem.Provider value={{ navvalue, setNavvalue}}>
-      {children}
+      {props.children}
     </NavItem.Provider>
   )
 }
@@ -16,5 +16,5 @@ export default Contextapi
 
 export const NavState = () => {
     return useContext(NavItem);
-  };
+};
   

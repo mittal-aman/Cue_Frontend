@@ -114,8 +114,6 @@ const AreaofStudy = () => {
             
             {mydata?.Images?.map((image,index) => {
               
-              
-              
               return(
                 
                 <div className={classes.div_box} key={id}>
@@ -123,7 +121,7 @@ const AreaofStudy = () => {
                     <h1 style={{textAlign: 'center',margin: 'auto',fontSize:'1.2vw',paddingTop:'1vh',}}>{mydata?.title}</h1>
                 </div>
               )
-            })}
+            })}                     
               
             
             </Slider>

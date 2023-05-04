@@ -9,6 +9,8 @@ import {useNavigate} from 'react-router-dom'
 import AlertDialog from "./Components/AlertBox";
 
 import { makeStyles } from '@material-ui/core';
+import Contextapi from './Contextapi';
+
 
 const useStyles = makeStyles(() => ({  
   
@@ -19,7 +21,8 @@ const useStyles = makeStyles(() => ({
       },
     }));
 function App() {
-
+  
+  
   // const navigate = useNavigate()
 
   useEffect(() => {
@@ -27,16 +30,18 @@ function App() {
       <AlertDialog/>
     }, 3000)
   }, [])
-  
-  
+    
     const classes = useStyles()
+
     return (
-   <BrowserRouter>
-      <div className={classes.App}>
-        <Header/>
-        <Main/>
-      </div>
-   </BrowserRouter>
+      <Contextapi>
+        <BrowserRouter>
+          <div className={classes.App}>
+            <Header />
+            <Main />
+          </div>
+        </BrowserRouter>
+      </Contextapi>
   );
 }
 
