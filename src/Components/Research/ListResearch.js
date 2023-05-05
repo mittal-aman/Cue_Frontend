@@ -7,7 +7,8 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyle = makeStyles(()=>({
   mainList:{
-    overflow: 'auto',height:'83vh'
+    overflow: 'auto',height:'83vh',
+    fontFamily: 'gotham-italics'
   },
   list:{
     textAlign:'center',
@@ -38,13 +39,13 @@ const ListAos = () => {
   return (
   
     <List className={classes.mainList}>
-      <h1 style={{textAlign:'center'}}>  Please select the Group</h1>
+      <h1 style={{textAlign:'center'}}>  Please select the Research Group</h1>
       {mydata?.map((movies) => {
             const {id,title} = movies;
       return(     
        
       
-          <ListItem button component={Link} key={id} to={`/cue/aos/${id}`} className={classes.list}>
+          <ListItem button component={Link} key={id} to={`/cue/areaofstudy/${id}`} className={classes.list}>
             <h4>{id}</h4> &nbsp; &nbsp; &nbsp;
             <ListItemText primary={title} />
           </ListItem>

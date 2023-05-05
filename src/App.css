@@ -36,3 +36,43 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: gotham-bold;
+  src: url(../public/Gotham-Bold.otf);
+}
+
+@font-face {
+  font-family: gotham-italic;
+  src: url(../public/Gotham-BoldItalic.otf);
+}
+
+@font-face {
+  font-family: gotham-book;
+  src: url(../public/Gotham-Book.otf);
+}
+
+@font-face {
+  font-family: gotham-bookitalic;
+  src: url(../public/Gotham-BookItalic.otf);
+}
+
+@font-face {
+  font-family: gotham-light;
+  src: url(../public/Gotham-Light.otf);
+}
+
+@font-face {
+  font-family: gotham-lightitalic;
+  src: url(../public/Gotham-LightItalic.otf);
+}
+
+@font-face {
+  font-family: gotham-medium;
+  src: url(../public/Gotham-Medium.otf);
+}
+
+@font-face {
+  font-family: gotham-mediumitalic;
+  src: url(../public/Gotham-MediumItalic.otf);
+}
