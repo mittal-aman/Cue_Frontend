@@ -77,41 +77,41 @@ const List = () => {
       >
         <Grid item className={classes.grid} xs={12} style={{background:'#541182',}}>
           <Button onClick={() => navigateToMenu('Area of Study')} className={classes.button}>
-            <NavLink style={{ textDecoration: 'none',background:'#541182', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/areaofstudy">Area of Study</NavLink>
+            <NavLink style={{ textDecoration: 'none',background:'#541182', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/aos">Area of Study</NavLink>
           </Button>
         </Grid>
         <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
           <Button onClick={() => navigateToMenu("Research Group")}>
             <div>
-              <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/researchgroup">Research Group</NavLink>
+              <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/rg">Research Group</NavLink>
             </div>
           </Button>
         </Grid>
         <Grid item className={classes.grid} xs={12} style={{background:'#541182'}}>
           <Button onClick={() => navigateToMenu("Faculty Directory")}>
             <div>
-              <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/facultydirectory">Faculty Directory</NavLink>
+              <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/fd">Faculty Directory</NavLink>
             </div>
           </Button>
         </Grid>
         <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
           <Button onClick={() => navigateToMenu("Staff Directory")}>
             <div>
-              <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/staff">Staff Directory</NavLink>
+              <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/s">Staff Directory</NavLink>
             </div>
           </Button>
         </Grid>
         <Grid item className={classes.grid} xs={12} style={{background:'#541182'}}>
           <Button onClick={() => navigateToMenu("Student Club")}>
             <div>
-              <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/studentclub">Student Club</NavLink>
+              <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/sc">Student Club</NavLink>
             </div>
           </Button>
         </Grid>
         <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
           <Button onClick={() => navigateToMenu("Department Map")} >
             <div>
-              <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/departmentmap">Department Map</NavLink>
+              <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/dp">Department Map</NavLink>
             </div>
           </Button>
         </Grid>
@@ -120,7 +120,7 @@ const List = () => {
           
           <Button onClick={() => navigateToMenu("Events")}>
             <div>
-              <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/event">Events</NavLink>
+              <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/e">Events</NavLink>
             </div>
           </Button>
         </Grid>

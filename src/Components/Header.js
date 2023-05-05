@@ -40,16 +40,16 @@ const useStyles = makeStyles(() => ({
       display: "flex",
       alignItems:'center',
       justifyContent: 'center',
-      fontSize:'1.4vw',
-      fontFamily: 'gotham-bold'
+      fontWeight: 'bold',
+      fontSize:'1.4vw'
     },
     title_topic:{
       margin: 'auto',
       display: "flex",
       alignItems:'start',
       justifyContent: 'start',
-      fontSize:'1.4vw',
-      fontFamily: 'gotham-bold'
+      fontWeight: 'bold',
+      fontSize:'1.4vw'
     }
     
 }));
@@ -83,19 +83,19 @@ const Header = () => {
       case "/":
       default:
         return "Faculty";
-      case "/cue/areaofstudy":
+      case "/cue/aos":
         return "Area Of Study";
-      case "/cue/researchgroup":
+      case "/cue/rg":
         return "Research Group";
-      case "/cue/facultydirectory":
+      case "/cue/fd":
         return "Faculty Directory";
-      case "/cue/staff":
+      case "/cue/s":
         return "Staff Directory";
-      case "/cue/studentclub":
+      case "/cue/sc":
         return "Student Club";
-      case "/cue/departmentmap":
+      case "/cue/dp":
         return "Department Map";
-      case "/cue/event":
+      case "/cue/e":
         return "Events";  
     }
   };
@@ -109,7 +109,7 @@ const Header = () => {
     <div>
     <Grid container className={classes.gridmain1}>
         <Grid item xs={6} md={9}>
-            <a href='/'><img src={logooo} alt="logo" className={classes.logo} /></a>
+            <img src={logooo} alt="logo" className={classes.logo} />
         </Grid>
         <Grid item xs={6} md={3} style={{paddingTop:'1vh'}}>
             <Typography variant="h5" style={{color:'white'}} className={classes.title}>DEPARTMENT OF {deptName}</Typography>
