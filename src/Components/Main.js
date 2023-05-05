@@ -65,16 +65,16 @@ const Main = () => {
       <Grid item xs={9} className={classes.grid1}>
           <Routes>
             <Route path="/" element={<Faculty />} />
-            <Route exact path="/cue/aos" element={<ListAos />}/>
-            <Route exact path="/cue/aos/:id" element={<AreaofStudy />}/>    
-            <Route exact path="/cue/rg/" element={<ListResearch />} />
+            <Route exact path="/cue/areaofstudy" element={<ListAos />}/>
+            <Route exact path="/cue/areaofstudy/:id" element={<AreaofStudy />}/>    
+            <Route exact path="/cue/researchgroup/" element={<ListResearch />} />
        
-            <Route exact path="/cue/rg/:id" element={<Research />} />
-            <Route exact path="/cue/fd" element={<Faculty />} />
-            <Route exact path="/cue/s"  element={<Staff />} />
-            <Route exact path="/cue/sc" element={<StudentClub />} />
-            <Route exact path="/cue/dp" element={<DepartmentMap />} />
-            <Route exact path="/cue/e" element={<Event />} />
+            <Route exact path="/cue/researchgroup/:id" element={<Research />} />
+            <Route exact path="/cue/facultydirectory" element={<Faculty />} />
+            <Route exact path="/cue/staff"  element={<Staff />} />
+            <Route exact path="/cue/studentclub" element={<StudentClub />} />
+            <Route exact path="/cue/departmentmap" element={<DepartmentMap />} />
+            <Route exact path="/cue/event" element={<Event />} />
           </Routes>
       </Grid>
       <Grid item xs={3} className={classes.grid2}>

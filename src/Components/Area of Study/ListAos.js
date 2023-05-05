@@ -12,6 +12,7 @@ import { NavState } from "../../Contextapi";
 const useStyle = makeStyles(()=>({
   mainList:{
     overflow: 'auto',height:'79vh',
+    fontFamily: 'gotham-italics'
     
   },
   
@@ -55,7 +56,7 @@ const ListAos = () => {
       {mydata?.map((movies) => {
             const {id,title} = movies;
       return(      
-      <ListItem button component={Link} key={id} to={`/cue/aos/${id}`} className={classes.list} onClick={() => navigateToMenu(title)}>
+      <ListItem button component={Link} key={id} to={`/cue/areaofstudy/${id}`} className={classes.list} onClick={() => navigateToMenu(title)}>
         <h4>{id}</h4> &nbsp; &nbsp; &nbsp;
         <ListItemText primary={title} className={classes.innerList} />
       </ListItem>
