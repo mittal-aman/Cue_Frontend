@@ -17,8 +17,6 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
   },
   divBox: {
-    alignContent: "center",
-    alignItems: "center",
     height: "30vh",
     width: "30vh",
     margin: "43px auto",
@@ -101,6 +99,7 @@ const Faculty = () => {
   return (
     (teacherData.length) &&
     <>
+    <div style={{ height: "100%", width: "100%" }}>
     <div>
       <Slider {...sliderSettings} className={classes.slider}>
         {teacherData.map(
@@ -143,6 +142,7 @@ const Faculty = () => {
           )
         )}
       </Slider>
+    </div>
     </div>
     </>
   );

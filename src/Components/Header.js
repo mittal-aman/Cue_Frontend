@@ -111,7 +111,7 @@ const Header = () => {
   const isSmScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   return (
-    <div>
+    <div style={{ height: "100%", width: "100%" }}>
       <Grid container className={classes.gridmain1}>
         <Grid item xs={12} sm={6} md={8}>
           <Link to="/">

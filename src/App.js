@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import 'normalize.css';
 
 import AlertDialog from "./Components/AlertBox";
 import Header from './Components/Header';
@@ -14,7 +15,7 @@ import Contextapi from './Contextapi';
 const useStyles = makeStyles(() => ({  
   
       App : {
-        backgroundColor : '#803DCD',
+        backgroundColor : '#b1adac',
         color: 'white',
         minHeight:"100vh", 
       },

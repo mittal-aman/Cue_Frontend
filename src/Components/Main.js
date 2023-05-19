@@ -19,20 +19,20 @@ const useStyles = makeStyles(() => ({
     flexGrow: 1,
   },
   gridcon: {
-    width: "100%",
+    width: "100vw",
     height: "100%",
   },
   grid1: {
     height: "85vh",
-    width: "100%",
-    background:'#b1adac',
+    width: "75vw",
+    background: "#b1adac",
     borderRight: "6px solid white",
   },
   grid2: {
     height: "85vh",
-    width: "100%",
+    width: "25vw",
     background: "#b1adac",
-    borderLeft: "6px solid #white",
+    borderLeft: "6px solid white",
   },
 }));
 
