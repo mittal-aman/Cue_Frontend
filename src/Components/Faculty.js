@@ -58,7 +58,6 @@ const Faculty = () => {
   const getTeacherData = async () => {
     try {
       const { personnels } = await API.getFaculty();
-      console.log(personnels);
       setTeacherData(personnels);
     } catch (error) {
       console.log(error);
@@ -100,6 +99,8 @@ const Faculty = () => {
   };
 
   return (
+    (teacherData.length) &&
+    <>
     <div>
       <Slider {...sliderSettings} className={classes.slider}>
         {teacherData.map(
@@ -143,6 +144,7 @@ const Faculty = () => {
         )}
       </Slider>
     </div>
+    </>
   );
 };
 
