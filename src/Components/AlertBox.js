@@ -1,80 +1,52 @@
-import * as React from 'react';
-import {useRef} from 'react'
-import {useIdleTimer} from 'react-idle-timer'
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import  { useState,useEffect } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useState, useRef } from "react";
+import { useIdleTimer } from "react-idle-timer";
+import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
 
+const AlertBox = () => {
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const idleTimerRef = useRef(null);
+  const sessionTimeoutRef = useRef(null);
 
-const AlertBox =(props)=> {
-
-  const [open, setOpen] = React.useState(false);
-
-  const navigate = useNavigate()
-
-  const idleTimerRef=useRef(null)
-  const sessionTimeoutRef=useRef(null)
-
-  const onIdle=()=>{
-    console.log('User is Idle');
+  const onIdle = () => {
+    console.log("User is idle");
     setOpen(true);
-    sessionTimeoutRef.current = setTimeout(gomain,5000);    
-  }
+    sessionTimeoutRef.current = setTimeout(goMain, 30000);
+  };
 
-  const gomain = () =>{
-    navigate('/') 
+  const goMain = () => {
+    navigate("/");
     setOpen(false);
-  }
+  };
 
   const idleTimer = useIdleTimer({
     crossTab: true,
     ref: idleTimerRef,
-    onIdle: onIdle,
-    timeout: 7*1000
-  })
+    onIdle,
+    timeout: 120 * 1000,
+  });
 
-  const handleClose = () => { 
+  const handleClose = () => {
     setOpen(false);
-    clearTimeout(sessionTimeoutRef.current)
+    clearTimeout(sessionTimeoutRef.current);
   };
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     handleOpen();
-  //   }, 4000)
-  // }, [])
-
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
-
-  
-
-  // const events = [
-  //   'mousemove',
-  //   'click',
-  //   'keypress'
-  // ];
-
-  
 
   return (
     <div>
-      
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-      >        
+      >
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-          To Stay on This Screen, Press OK.
+            To stay on this screen, press OK.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -83,11 +55,9 @@ const AlertBox =(props)=> {
           </Button>
         </DialogActions>
       </Dialog>
-
       <div idletimer={idleTimer}></div>
-      
     </div>
   );
-}
+};
 
-export default AlertBox
+export default AlertBox;

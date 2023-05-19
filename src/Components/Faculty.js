@@ -1,107 +1,149 @@
-import React from 'react'
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import { makeStyles } from '@material-ui/core/styles';
-import RightArrow from '../images/RightArrow.png';
-import LeftArrow from '../images/LeftArrow.png';
-import  { useState,useEffect } from 'react'
-import { API }  from '../Api/apiWrapper';
+import { makeStyles } from "@material-ui/core/styles";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import RightArrow from "../images/RightArrow.png";
+import LeftArrow from "../images/LeftArrow.png";
+import { API } from "../Api/apiWrapper";
+import noImageAvailable from "../images/no-image.jpg";
 
-
-
-
-
-const useStyle = makeStyles(() =>({
-
-
-    slider:{
-      width: '90%',
-      height: '79vh',
-      margin: 'auto',
-           
+const useStyles = makeStyles(() => ({
+  slider: {
+    width: "85%",
+    height: "85%",
+    margin: "auto", 
+    alignContent: "center",
+    alignItems: "center",
+  },
+  divBox: {
+    alignContent: "center",
+    alignItems: "center",
+    height: "30vh",
+    width: "30vh",
+    margin: "43px auto",
+    display: "flex",
+    justifyContent: "center",
+    "& img": {
+      height: "100%",
+      width: "100%",
+      display: "block",
+      objectFit: "cover",
+      objectPosition: "center",
     },
-
-    div_box:{
-      height: '30vh',
-      // paddingBottom: '3vh',
-      width: '10vw',
-      background: '#eee6f3',
-      margin: '40px 0px',
-      border: '1px solid #ab82c5',
-    //   offset: '10px 30px',
-
+  },
+  arrow: {
+    position: "absolute",
+    top: "calc(50% - 40px)",
+    margin: "auto",
+    height: "90px",
+    width: "50px",
+    transition: "transform 0.3s ease",
+    "&:hover": {
+      transform: "scale(1.2)",
     },
-}))
+  },
+  leftArrow: {
+    left: "-3.7vw",
+  },
+  rightArrow: {
+    right: "-3.7vw",
+  },
+}));
 
-const Faculty=()=> {
+const Faculty = () => {
+  const [teacherData, setTeacherData] = useState([]);
+  const classes = useStyles();
 
-  const [mydata, setMydata] = useState();
- 
-  const getteacherdata = () => {
+  const getTeacherData = async () => {
+    try {
+      const { personnels } = await API.getFaculty();
+      console.log(personnels);
+      setTeacherData(personnels);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    // console.log(api);
-    API.getFaculty().then((data) => {
-      console.log(data);
-      // console.log(typeof response.data[0].movies);
-      setMydata(data.personnels)
-      // console.log(typeof response.data[0].movies);
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
-  useEffect(()=>{
-    getteacherdata();
-  },[])
-
-  const classes = useStyle();
+  useEffect(() => {
+    getTeacherData();
+  }, []);
 
   const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
-    <img src={LeftArrow} alt="prevArrow" {...props} style={{height:'40px',width:"30px",left: '-2.7vw',}}/>
+    <img
+      src={LeftArrow}
+      alt="previous arrow"
+      {...props}
+      className={`${classes.arrow} ${classes.leftArrow}`}
+    />
   );
 
   const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
-    <img src={RightArrow} alt="nextArrow" {...props} style={{height:'40px',width:"30px",right: '-2.7vw',}}/>
+    <img
+      src={RightArrow}
+      alt="next arrow"
+      {...props}
+      className={`${classes.arrow} ${classes.rightArrow}`}
+    />
   );
 
-
-
-  const settings = {
-      
-    centerMode: true,
-    centerPadding: "0px",
+  const sliderSettings = {
+    swipeToSlide: true,
+    infinite: false,
+    dots: true,
     speed: 500,
-    rows: 2,
-    slidesToShow: 4,
+    slidesToShow: Math.min(4, teacherData.length),
     nextArrow: <SlickArrowRight />,
     prevArrow: <SlickArrowLeft />,
-    
+    dotsClass: "slick-dots slick-thumb",
+    rows: 2, // Adjust the number of rows based on the number of items
   };
 
   return (
     <div>
-       
-        <Slider {...settings} className={classes.slider}>
-       
-          {mydata?.map((personnels) => {
-            
-            const {netId,firstName,lastName,imageUrl,personalUrl} = personnels;
-            
-            return(
-              
-              <div className={classes.div_box} key={netId}>
-                <a href={personalUrl} target="_self" rel="noopener noreferrer" style={{color: '#FFFFFF',textDecoration: 'none'}}>
-                  <img src={imageUrl} alt='teacher1' style={{height: '30vh',width: '16.8vw',}} />
-                  <h1 style={{textAlign: 'center',margin: 'auto',fontSize:'1.2vw',paddingTop:'1vh',}}>{firstName} {lastName}</h1>
-                </a>
-              </div>
-            )
-          })}
-           
-          
-        </Slider>
-      </div>
-  )
-}
+      <Slider {...sliderSettings} className={classes.slider}>
+        {teacherData.map(
+          ({ netId, firstName, lastName, imageUrl, personalUrl }) => (
+            <div className={classes.divBox} key={netId}>
+              <a
+                href={personalUrl}
+                target="_self"
+                rel="noopener noreferrer"
+                style={{ color: "#FFFFFF", textDecoration: "none" }}
+              >
+                {imageUrl &&
+                /\.(jpe?g|png|gif)(?:[\?\#].*)?$/i.test(imageUrl) ? (
+                  <img
+                    src={imageUrl}
+                    alt={`${firstName} ${lastName}`}
+                    style={{ }}
+                  />
+                ) : (
+                  <img
+                    src={noImageAvailable}
+                    alt="No Image Available"
+                    style={{  }}
+                  />
+                )}
+                <h1
+                  style={{
+                    margin: "auto",
+                    textAlign: "center",
+                    fontSize: "1.2vw",
+                    paddingTop: "1vh",
+                    color: "Black",
+                    textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)"
+                  }}
+                >
+                  {lastName} {firstName}
+                </h1>
+              </a>
+            </div>
+          )
+        )}
+      </Slider>
+    </div>
+  );
+};
 
 export default Faculty;

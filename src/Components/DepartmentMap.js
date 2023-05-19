@@ -1,10 +1,7 @@
-import React from 'react'
-import  { useState,useEffect } from 'react'
-import { useContext } from 'react';
-import {NavItem} from '../Contextapi';
+import React, { useContext } from 'react';
+import { NavItem } from '../Contextapi';
 
 
-import {useNavigate} from 'react-router-dom'
 
 const DepartmentMap = () => {
 

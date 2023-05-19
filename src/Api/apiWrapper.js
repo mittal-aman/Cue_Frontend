@@ -1,21 +1,26 @@
 import axios from "axios";
 
-const baseUrl = "http://128.122.136.144:8080"; // testURL
-// const baseUrl = "http://128.122.136.144:8080"; // prodURL
+const environments = {
+  test: "https://localhost:8443",
+  prod: "http://128.122.136.144:8080"
+};
 
-const responseBody = (response) => response.data;
+console.log(process.env.NODE_ENV);
 
-export const requests = {
-  get: (url, header) => axios.get(url, header).then(responseBody),
-  post: (url, body, header) => axios.post(url, body, header).then(responseBody),
+// Set base URL according to the environment
+const baseUrl = process.env.NODE_ENV === 'production' ? environments.prod : environments.test;
+
+const responseBody = response => response.data;
+
+const requests = {
+  get: async (url, header) => await axios.get(`${baseUrl}${url}`, header).then(responseBody),
+  post: async (url, body, header) => await axios.post(`${baseUrl}${url}`, body, header).then(responseBody),
 }
 
 const API = {
-  getFaculty: (headers) => requests.get(`${baseUrl}/CUE/F`, headers),
-  getFacultyById: (id, headers) => requests.get(`${baseUrl}/getFaculty/${id}`, headers),
-  getStaff: (headers) => requests.get(`${baseUrl}/CUE/S`, headers),
+  getFaculty: headers => requests.get('/CUE/F', headers),
+  getFacultyById: (id, headers) => requests.get(`/getFaculty/${id}`, headers),
+  getStaff: headers => requests.get('/CUE/S', headers)
 };
 
-export {
-  API
-};
+export { API };

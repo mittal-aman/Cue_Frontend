@@ -1,12 +1,11 @@
-import { makeStyles } from '@material-ui/core'
-import React from 'react'
-import  { useState,useEffect } from 'react'
-import {useNavigate,useParams} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import Slider from 'react-slick';
-import RightArrow from '../../images/RightArrow.png';
-import LeftArrow from '../../images/LeftArrow.png';
 import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Slider from 'react-slick';
+import LeftArrow from '../../images/LeftArrow.png';
+import RightArrow from '../../images/RightArrow.png';
 
 
 const useStyles = makeStyles(()=>({

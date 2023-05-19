@@ -1,40 +1,28 @@
-import * as React from "react";
-import {useLocation, useNavigate} from 'react-router-dom'
-import Grid from "@mui/material/Grid";
 import { makeStyles } from "@material-ui/core";
-import { NavLink } from "react-router-dom";
 import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import * as React from "react";
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { NavState } from "../Contextapi";
 
 const useStyle = makeStyles(() => ({
   grid_main: {
-    // width: "5vw",
-    // height: "55vh",
     paddingLeft: "1em",
     paddingRight: "1em",
     paddingTop: "3em",
-    
-    
   },
   grid: {
-    textAlign: "left",
-    background: "#ab82c5",
-    border: "2px solid",
-    height: "7vh",
     display: "flex",
     alignItems: "center",
-    borderRadius: "6px"
-    
-    
+    height: "7vh",
+    boxShadow: "1px 1px 1px 1px rgba(0, 0, 0, 0.2)",
+    padding: "0 20px",
+    boxSizing: "border-box"
   },
-  // button:{
-  //   height:100%
-  // },
-
   prevButton:{
     backgroundColor: '#3f0d60',
     borderRadius: '20px',
-    padding: '17px 60px',
+    padding: '17px 30px',
     cursor: 'pointer',
     borderColor:'#d8b1f3',
     color:'white',
@@ -44,12 +32,17 @@ const useStyle = makeStyles(() => ({
     justifyContent: 'center',
     fontWeight: 'bold',
     fontSize:'1.4vw'
+  },
+  navLink: {
+    textDecoration: 'none',
+    fontWeight: 'bold',
+    fontSize: '1.4vw'
   }
 }));
 
 const List = () => {
   const navigate = useNavigate();
-    
+
   const { navvalue, setNavvalue } = NavState();
 
   const location = useLocation();
@@ -63,6 +56,46 @@ const List = () => {
     navvalue.push(navigationName)
     setNavvalue(navvalue);
   }
+
+  const menuItems = [
+    { title: "Area of Study", path: "/cue/areaofstudy", gradient: "to left" },
+    { title: "Research Group", path: "/cue/researchgroup", gradient: "to right" },
+    { title: "Faculty Directory", path: "/cue/facultydirectory", gradient: "to left" },
+    { title: "Staff Directory", path: "/cue/staff", gradient: "to right" },
+    { title: "Student Club", path: "/cue/studentclub", gradient: "to left" },
+    { title: "Department Map", path: "/cue/departmentmap", gradient: "to right" },
+    { title: "Events", path: "/cue/event", gradient: "to left" },
+  ];
+
+  const renderMenuItem = (item, index) => (
+    <Grid
+      key={index}
+      item
+      className={classes.grid}
+      xs={12}
+      style={{
+        background: `rgb(255,255,255)`,
+        background: `radial-gradient(circle, rgba(255,255,255,1) 64%, rgba(84,84,84,1) 77%)`,
+        
+        // backgroundImage: `linear-gradient(${item.gradient}, #ab82c5, #4A126F)`,
+        marginBottom: '15px', // Add margin bottom here
+        justifyContent: 'center',
+        color: "#330662",
+      }}
+    >
+      <Button onClick={() => navigateToMenu(item.title)}>
+        <NavLink
+          className={classes.navLink}
+          style={{ color:   "purple" }}
+          to={item.path}
+        >
+          {item.title}
+        </NavLink>
+      </Button>
+    </Grid>
+  );
+  
+
   const classes = useStyle();
 
   return (
@@ -72,79 +105,47 @@ const List = () => {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        
         className={classes.grid_main}
       >
-        <Grid item className={classes.grid} xs={12} style={{background:'#541182',}}>
-          <Button onClick={() => navigateToMenu('Area of Study')} className={classes.button}>
-            <NavLink style={{ textDecoration: 'none',background:'#541182', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/areaofstudy">Area of Study</NavLink>
-          </Button>
-        </Grid>
-        <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
-          <Button onClick={() => navigateToMenu("Research Group")}>
-            <div>
-              <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/researchgroup">Research Group</NavLink>
-            </div>
-          </Button>
-        </Grid>
-        <Grid item className={classes.grid} xs={12} style={{background:'#541182'}}>
-          <Button onClick={() => navigateToMenu("Faculty Directory")}>
-            <div>
-              <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/facultydirectory">Faculty Directory</NavLink>
-            </div>
-          </Button>
-        </Grid>
-        <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
-          <Button onClick={() => navigateToMenu("Staff Directory")}>
-            <div>
-              <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/staff">Staff Directory</NavLink>
-            </div>
-          </Button>
-        </Grid>
-        <Grid item className={classes.grid} xs={12} style={{background:'#541182'}}>
-          <Button onClick={() => navigateToMenu("Student Club")}>
-            <div>
-              <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/studentclub">Student Club</NavLink>
-            </div>
-          </Button>
-        </Grid>
-        <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
-          <Button onClick={() => navigateToMenu("Department Map")} >
-            <div>
-              <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/departmentmap">Department Map</NavLink>
-            </div>
-          </Button>
-        </Grid>
-
-        <Grid item className={classes.grid} xs={12} style={{background:'#541182'}}>
-          
-          <Button onClick={() => navigateToMenu("Events")}>
-            <div>
-              <NavLink style={{ textDecoration: 'none', color: 'white',fontWeight: 'bold',fontSize:'1.4vw' }} to="/cue/event">Events</NavLink>
-            </div>
-          </Button>
-        </Grid>
-        {location.pathname !== "/" ? (
-          <Grid item className={classes.grid} xs={12} style={{background:'#d8b1f3'}}>
+        {menuItems.map(renderMenuItem)}
+        {location.pathname !== "/" && (
+          <Grid
+            item
+            className={classes.grid}
+            xs={12}
+            style={{         background: `rgb(255,255,255)`,
+            background: `radial-gradient(circle, rgba(255,255,255,1) 64%, rgba(84,84,84,1) 77%)`,
+            
+            // backgroundImage: `linear-gradient(${item.gradient}, #ab82c5, #4A126F)`,
+            justifyContent: 'center',
+ }}
+          >
             <Button onClick={() => navigateToMenu("Faculty")}>
-              <div>
-                <NavLink style={{ textDecoration: 'none', color: '#330662',fontWeight: 'bold',fontSize:'1.4vw' }} to="/">Main Menu</NavLink>
-              </div>
+              <NavLink
+                className={classes.navLink}
+                style={{ color: "purple" }}
+                to="/"
+              >
+                Main Menu
+              </NavLink>
             </Button>
           </Grid>
-        ) : null}
+        )}
       </Grid>
-              <br /> <br /> <br />
-      {location.pathname !== "/" ? (
-
-          <Grid item className={classes.prev} xs={12}>
-              
-                <button onClick={() => {navigate(-1);reverseData();}} className={classes.prevButton}>
-                  Prev.Page
-                </button>
-              
-          </Grid>
-        ) : null}
+      <br />
+      {location.pathname !== "/" && (
+        <Grid item className={classes.prev} xs={12}>
+          <button
+            onClick={() => {
+              navigate(-1);
+              reverseData();
+            }}
+            className={classes.prevButton}
+          >
+            Prev.Page
+          </button>
+        </Grid>
+      )}
     </div>
   );
 };
