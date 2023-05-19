@@ -2,13 +2,13 @@ import axios from "axios";
 
 const environments = {
   test: "https://localhost:8443",
-  prod: "http://128.122.136.144:8080"
+  prod: "https://128.122.136.144:8443"
 };
 
 console.log(process.env.NODE_ENV);
 
 // Set base URL according to the environment
-const baseUrl = process.env.NODE_ENV === 'production' ? environments.prod : environments.test;
+const baseUrl = process.env.NODE_ENV === 'development' ? environments.prod : environments.test;
 
 const responseBody = response => response.data;
 
