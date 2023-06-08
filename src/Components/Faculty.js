@@ -103,7 +103,7 @@ const Faculty = () => {
     <div>
       <Slider {...sliderSettings} className={classes.slider}>
         {teacherData.map(
-          ({ netId, firstName, lastName, imageUrl, personalUrl }) => (
+          ({ netId, firstName, lastName, imageUrl, personalUrl,officeNum, title }) => (
             <div className={classes.divBox} key={netId}>
               <a
                 href={personalUrl}
@@ -135,7 +135,8 @@ const Faculty = () => {
                     textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)"
                   }}
                 >
-                  {lastName} {firstName}
+                  {firstName} {lastName} <br />
+                  {title.length ? title : 'TITLE'} , {officeNum.length ? officeNum : 'ROOM #'} 
                 </h1>
               </a>
             </div>

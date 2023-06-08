@@ -101,7 +101,7 @@ const Staff = () => {
   return (
     <div>
       <Slider {...settings} className={classes.slider}>
-        {mydata.map(({ netId, firstName, lastName, imageUrl, personalUrl }) => (
+        {mydata.map(({ netId, firstName, lastName, imageUrl, personalUrl,officeNum, title }) => (
           <div className={classes.divBox} key={netId}>
             <a
               href={personalUrl}
@@ -129,7 +129,8 @@ const Staff = () => {
                     paddingTop: "1vh",
                     color: "Black",
                     textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)" }}>
-                {lastName} {firstName}
+                {firstName} {lastName}<br />
+                {title.length ? title : 'TITLE'} , {officeNum.length ? officeNum : 'ROOM #'} 
               </h1>
             </a>
           </div>

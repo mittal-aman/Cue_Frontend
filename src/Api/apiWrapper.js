@@ -8,7 +8,7 @@ const environments = {
 console.log(process.env.NODE_ENV);
 
 // Set base URL according to the environment
-const baseUrl = process.env.NODE_ENV === 'development' ? environments.prod : environments.test;
+const baseUrl = process.env.NODE_ENV === 'development' ? environments.test : environments.prod;
 
 const responseBody = response => response.data;
 

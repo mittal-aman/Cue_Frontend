@@ -74,8 +74,10 @@ const List = () => {
       className={classes.grid}
       xs={12}
       style={{
-        background: `rgb(255,255,255)`,
-        background: `radial-gradient(circle, rgba(255,255,255,1) 64%, rgba(84,84,84,1) 77%)`,
+        // background: `rgb(255,255,255)`,
+        // background: `radial-gradient(circle, rgba(255,255,255,1) 64%, rgba(84,84,84,1) 77%)`,
+        background: `rgb(84,84,84)`,
+        background: `linear-gradient(90deg, rgba(56,56,56,1) 10%, rgba(255,255,255,1) 25%,rgba(255,255,255,1) 75%, rgba(56,56,56,1) 90%)`,
         
         // backgroundImage: `linear-gradient(${item.gradient}, #ab82c5, #4A126F)`,
         marginBottom: '15px', // Add margin bottom here

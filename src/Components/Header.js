@@ -10,6 +10,7 @@ import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { NavItem } from "../Contextapi";
 import logooo from "../images/logo.png";
+import zIndex from "@material-ui/core/styles/zIndex";
 
 const titleStyle = {
   margin: "auto",
@@ -22,13 +23,15 @@ const titleStyle = {
 
 const useStyles = makeStyles((theme) => ({
   gridmain1: {
-    background: "#b1adac",
+    background: "#49126f",
     height: "100%",
     fontWeight: "bold",
-    width: "100%",
+    width: "100%"
   },
   gridmain2: {
-    backgroundImage: "linear-gradient(to right, #292929, #ffffff)",
+    // backgroundImage: "linear-gradient(to right, #292929, #ffffff)",
+    background: `rgb(36,39,40)`,
+    background: `linear-gradient(90deg, rgba(36,39,40,1) 0%, rgba(255,255,255,1) 70%)`,
     height: "100%",
     width: "100%",
     paddingLeft: "2vw",
@@ -41,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: "10vh",
     weight: "10vw",
-    maxWidth: "50%",
+    maxWidth: "50%"
   },
   title: {
     ...titleStyle,
@@ -49,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "right",
     cursor: "pointer",
     transition: "all 0.3s ease-in-out",
-    color: "#4c1676",
+    color: "purple",
     "&:hover": {
       color: "#ab82c5",
     },
@@ -70,7 +73,7 @@ const Header = () => {
   const [deptName, setDeptName] = useState("Department Name");
   const getDeptName = async () => {
     try {
-      const response = await axios.get("https://128.122.136.144:8443/CUE/F");
+      const response = await axios.get("https://localhost:8443/CUE/F");
       setDeptName(response.data.deptName);
     } catch (error) {
       console.error(error);
@@ -113,7 +116,7 @@ const Header = () => {
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <Grid container className={classes.gridmain1}>
-        <Grid item xs={12} sm={6} md={8}>
+        <Grid item xs={12} sm={6} md={8} style={{zIndex:'999',paddingLeft:16,paddingTop:4}}>
           <Link to="/">
             <img src={logooo} alt="logo" className={classes.logo} style={{objectFit:'contain', mixBlendMode:'darken' }} />
           </Link>
@@ -121,14 +124,14 @@ const Header = () => {
         <Grid item xs={12} sm={6} md={4} style={{ paddingTop: isSmScreen ? "2vh" : "1vh" }}>
           <Typography
             variant="h5"
-            style={{ color: "#490d69" }}
+            style={{ color: "white" }}
             className={classes.title}
           >
             DEPARTMENT OF
           </Typography>
           <Typography
             variant="h5"
-            style={{ color: "#490d69" }}
+            style={{ color: "white" }}
             className={classes.title}
           >
             {deptName}
