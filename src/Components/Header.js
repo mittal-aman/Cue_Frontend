@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "right",
     cursor: "pointer",
     transition: "all 0.3s ease-in-out",
-    color: "purple",
+    color: "#49126f",
     "&:hover": {
       color: "#ab82c5",
     },
@@ -116,9 +116,9 @@ const Header = () => {
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <Grid container className={classes.gridmain1}>
-        <Grid item xs={12} sm={6} md={8} style={{zIndex:'999',paddingLeft:16,paddingTop:4}}>
+        <Grid item xs={12} sm={6} md={8} style={{paddingLeft:16,paddingTop:4}}>
           <Link to="/">
-            <img src={logooo} alt="logo" className={classes.logo} style={{objectFit:'contain', mixBlendMode:'darken' }} />
+            <img src={logooo} alt="logo" className={classes.logo} style={{ }} />
           </Link>
         </Grid>
         <Grid item xs={12} sm={6} md={4} style={{ paddingTop: isSmScreen ? "2vh" : "1vh" }}>

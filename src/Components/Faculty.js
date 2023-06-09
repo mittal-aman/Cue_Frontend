@@ -10,16 +10,17 @@ import noImageAvailable from "../images/no-image.jpg";
 
 const useStyles = makeStyles(() => ({
   slider: {
-    width: "85%",
-    height: "85%",
+    width: "82%",
     margin: "auto", 
     alignContent: "center",
     alignItems: "center",
+    "& .slick-track":{
+      height: '81vh'
+    }
   },
   divBox: {
-    height: "30vh",
-    width: "30vh",
-    margin: "43px auto",
+    height: "auto",
+    marginTop: "36px",
     display: "flex",
     justifyContent: "center",
     "& img": {
@@ -42,10 +43,10 @@ const useStyles = makeStyles(() => ({
     },
   },
   leftArrow: {
-    left: "-3.7vw",
+    left: "-5.0vw",
   },
   rightArrow: {
-    right: "-3.7vw",
+    right: "-5.0vw",
   },
 }));
 
@@ -89,7 +90,7 @@ const Faculty = () => {
     infinite: false,
     dots: true,
     speed: 500,
-    slidesToShow: Math.min(4, teacherData.length),
+    slidesToShow: Math.min(5, teacherData.length),
     nextArrow: <SlickArrowRight />,
     prevArrow: <SlickArrowLeft />,
     dotsClass: "slick-dots slick-thumb",
@@ -99,7 +100,7 @@ const Faculty = () => {
   return (
     (teacherData.length) &&
     <>
-    <div style={{ height: "100%", width: "100%" }}>
+    <div style={{ height: "100%", width: "100%",overflowY:"auto" }}>
     <div>
       <Slider {...sliderSettings} className={classes.slider}>
         {teacherData.map(
@@ -116,28 +117,45 @@ const Faculty = () => {
                   <img
                     src={imageUrl}
                     alt={`${firstName} ${lastName}`}
-                    style={{ }}
+                    style={{ height: '27vh'}}
                   />
                 ) : (
                   <img
                     src={noImageAvailable}
                     alt="No Image Available"
-                    style={{  }}
+                    style={{ height: '27vh' }}
                   />
                 )}
+                <div style={{height:'7vh',
+                                      background: `linear-gradient(90deg, rgba(199,199,199,1) 1%, rgba(255,255,255,1) 7%,rgba(255,255,255,1) 97%, rgba(199,199,199,1) 99%)`,
+                                      overflowY:'auto'
+                           }}>
                 <h1
                   style={{
                     margin: "auto",
                     textAlign: "center",
-                    fontSize: "1.2vw",
-                    paddingTop: "1vh",
+                    fontSize: "0.82vw",
+                    fontFamily:'gotham-medium',
+                    paddingTop: "1.4vh",
                     color: "Black",
                     textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)"
                   }}
                 >
                   {firstName} {lastName} <br />
+                  </h1>
+                  <h1
+                  style={{
+                    margin: "auto",
+                    textAlign: "center",
+                    fontSize: "0.76vw",
+                    paddingTop: "0.2vh",
+                    color: "Black",
+                    textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)"
+                  }}
+                >
                   {title.length ? title : 'TITLE'} , {officeNum.length ? officeNum : 'ROOM #'} 
                 </h1>
+                </div>
               </a>
             </div>
           )

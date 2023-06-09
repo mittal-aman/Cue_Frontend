@@ -10,18 +10,17 @@ import RightArrow from '../images/RightArrow.png';
 
 const useStyles = makeStyles(() => ({
   slider: {
-    width: "85%",
-    height: "85%",
+    width: "82%",
     margin: "auto", 
     alignContent: "center",
     alignItems: "center",
+    "& .slick-track":{
+      height: '81vh'
+    }
   },
   divBox: {
-    alignContent: "center",
-    alignItems: "center",
-    height: "30vh",
-    width: "30vh",
-    margin: "43px auto",
+    height: "auto",	
+    marginTop: "36px",
     display: "flex",
     justifyContent: "center",
     "& img": {
@@ -44,10 +43,10 @@ const useStyles = makeStyles(() => ({
     },
   },
   leftArrow: {
-    left: "-3.7vw",
+    left: "-5.0vw",
   },
   rightArrow: {
-    right: "-3.7vw",
+    right: "-5.0vw",
   },
 }));
 
@@ -91,7 +90,7 @@ const Staff = () => {
     infinite:false,
     dots: true,
     speed: 500,
-    slidesToShow: Math.min(4, mydata.length),
+    slidesToShow: Math.min(5, mydata.length),
     nextArrow: <SlickArrowRight />,
     prevArrow: <SlickArrowLeft />,
     dotsClass: "slick-dots slick-thumb",
@@ -99,45 +98,73 @@ const Staff = () => {
   };
 
   return (
+    (mydata.length) &&	
+    <>	
+    <div style={{ height: "100%", width: "100%",overflowY:"auto" }}>
     <div>
       <Slider {...settings} className={classes.slider}>
         {mydata.map(({ netId, firstName, lastName, imageUrl, personalUrl,officeNum, title }) => (
-          <div className={classes.divBox} key={netId}>
-            <a
-              href={personalUrl}
-              target="_self"
-              rel="noopener noreferrer"
-              style={{ color: '#FFFFFF', textDecoration: 'none' }}
-            >
-              {imageUrl && /\.(jpe?g|png|gif)(?:[\?\#].*)?$/i.test(imageUrl) ? (
-                <img
-                  src={imageUrl}
-                  alt={`${firstName} ${lastName}`}
-                  style={{ }}
-                />
-              ) : (
-                <img
-                  src={noImageAvailable}
-                  alt="No Image Available"
-                  style={{  }}
-                />
-              )}
-              <h1 style={{
-                    margin: "auto",
-                    textAlign: "center",
-                    fontSize: "1.2vw",
-                    paddingTop: "1vh",
-                    color: "Black",
-                    textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)" }}>
-                {firstName} {lastName}<br />
-                {title.length ? title : 'TITLE'} , {officeNum.length ? officeNum : 'ROOM #'} 
-              </h1>
-            </a>
-          </div>
-        ))}
-      </Slider>
-    </div>
-  );
-};
+          	            <div className={classes.divBox} key={netId}>	
+                        <a	
+                          href={personalUrl}	
+                          target="_self"	
+                          rel="noopener noreferrer"	
+                          style={{ color: "#FFFFFF", textDecoration: "none" }}	
+                        >	
+                          {imageUrl &&	
+                          /\.(jpe?g|png|gif)(?:[\?\#].*)?$/i.test(imageUrl) ? (	
+                            <img	
+                              src={imageUrl}	
+                              alt={`${firstName} ${lastName}`}	
+                              style={{ height: '27vh'}}	
+                            />	
+                          ) : (	
+                            <img	
+                              src={noImageAvailable}	
+                              alt="No Image Available"	
+                              style={{ height: '27vh' }}	
+                            />	
+                          )}	
+                          <div style={{height:'7vh',	
+                                                background: `linear-gradient(90deg, rgba(199,199,199,1) 1%, rgba(255,255,255,1) 7%,rgba(255,255,255,1) 97%, rgba(199,199,199,1) 99%)`,	
+                                                overflowY:'auto'	
+                                     }}>	
+                          <h1	
+                            style={{	
+                              margin: "auto",	
+                              textAlign: "center",	
+                              fontSize: "0.82vw",	
+                              fontFamily:'gotham-medium',	
+                              paddingTop: "1.4vh",	
+                              color: "Black",	
+                              textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)"	
+                            }}	
+                          >	
+                            {firstName} {lastName} <br />	
+                            </h1>	
+                            <h1	
+                            style={{	
+                              margin: "auto",	
+                              textAlign: "center",	
+                              fontSize: "0.76vw",	
+                              paddingTop: "0.2vh",	
+                              color: "Black",	
+                              textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)"	
+                            }}	
+                          >	
+                            {title.length ? title : 'TITLE'} , {officeNum.length ? officeNum : 'ROOM #'} 	
+                          </h1>	
+                          </div>	
+                        </a>	
+                      </div>	
+                    )	
+                  )}	
+                </Slider>	
+              </div>	
+              </div>	
+              </>	
+            );	
+          };
+ 
 
 export default Staff;

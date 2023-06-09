@@ -25,13 +25,17 @@ const useStyles = makeStyles(() => ({
   grid1: {
     height: "85vh",
     width: "75vw",
-    background: "#b1adac",
+    // background: "#b1adac",
+    overflowY:'auto',
+    background: 'linear-gradient(0deg, grey, #dee0e0,grey)',
     borderRight: "6px solid white",
   },
   grid2: {
     height: "85vh",
     width: "25vw",
-    background: "#b1adac",
+    // background: "#b1adac",
+    overflowY:'auto',
+    background: 'linear-gradient(0deg, grey, #dee0e0,grey)',
     borderLeft: "6px solid white",
   },
 }));
