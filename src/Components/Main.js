@@ -50,9 +50,9 @@ const Main = () => {
         <Routes>
           <Route path="/" element={<Faculty />} />
           <Route exact path="/cue/areaofstudy" element={<ListAos />} />
-          <Route exact path="/cue/areaofstudy/:id" element={<AreaofStudy />} />
+          <Route exact path="/cue/areaofstudy/:title" element={<AreaofStudy />} />
           <Route exact path="/cue/researchgroup/" element={<ListResearch />} />
-          <Route exact path="/cue/researchgroup/:id" element={<Research />} />
+          <Route exact path="/cue/researchgroup/:title" element={<Research />} />
           <Route exact path="/cue/facultydirectory" element={<Faculty />} />
           <Route exact path="/cue/staff" element={<Staff />} />
           <Route exact path="/cue/studentclub" element={<StudentClub />} />

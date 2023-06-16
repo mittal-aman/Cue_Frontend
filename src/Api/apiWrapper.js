@@ -19,8 +19,11 @@ const requests = {
 
 const API = {
   getFaculty: headers => requests.get('/CUE/F', headers),
-  getFacultyById: (id, headers) => requests.get(`/getFaculty/${id}`, headers),
-  getStaff: headers => requests.get('/CUE/S', headers)
+  // getFacultyById: (id, headers) => requests.get(`/getFaculty/${id}`, headers),
+  getStaff: headers => requests.get('/CUE/S', headers),
+  getAreaOfStudyList: headers => requests.get('/CUE/list/A', headers),
+  getResearchGroupList: headers => requests.get('/CUE/list/R', headers),
+  getAreaOfStudy: (groupName, headers) => requests.get(`/CUE/aos/${groupName}`, headers)
 };
 
 export { API };

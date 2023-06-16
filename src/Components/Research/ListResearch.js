@@ -44,7 +44,7 @@ const ListAos = () => {
       return(     
        
       
-          <ListItem button component={Link} key={id} to={`/cue/areaofstudy/${id}`} className={classes.list}>
+          <ListItem button component={Link} key={title} to={`/cue/areaofstudy/${title}`} className={classes.list}>
             <h4>{id}</h4> &nbsp; &nbsp; &nbsp;
             <ListItemText primary={title} />
           </ListItem>
