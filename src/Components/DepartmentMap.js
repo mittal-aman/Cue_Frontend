@@ -1,47 +1,46 @@
-import React from 'react'
-import  { useState,useEffect } from 'react'
-import { useContext } from 'react';
-import {NavItem} from '../Contextapi';
-
-
-import {useNavigate} from 'react-router-dom'
+import React, { useContext } from 'react';
+import { NavItem } from '../Contextapi';
+import noImageAvailable from "../images/no-image.jpg";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const DepartmentMap = () => {
-
   const { setNavvalue } = useContext(NavItem);
 
   const handleClick = () => {
     setNavvalue('Department');
   };
-  
+
   return (
-
-    <div>
-      hello
+    <div style={styles.container}>
+      <TransformWrapper>
+        <TransformComponent>
+          <div style={styles.imageWrapper}>
+            <img src={noImageAvailable} alt="DepartmentMap" style={styles.image} />
+          </div>
+        </TransformComponent>
+      </TransformWrapper>
     </div>
+  );
+};
 
-  )
-}
+const styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 'auto',
+    height:'100%'
+  },
+  imageWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
+};
 
-export default DepartmentMap
-
-
-
-
-
-
-
-
-
-
-
-
-//  const navigate = useNavigate()
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     navigate('/')
-  //   }, 100)
-  // }, [])
-
+export default DepartmentMap;
 

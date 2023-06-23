@@ -1,12 +1,12 @@
 //import logo from './logo.svg';
+import 'normalize.css';
+import { useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import { BrowserRouter, Route ,Routes} from 'react-router-dom';
-import  { useState,useEffect } from 'react'
 
-import Header from './Components/Header'
-import Main from './Components/Main'
-import {useNavigate} from 'react-router-dom'
 import AlertDialog from "./Components/AlertBox";
+import Header from './Components/Header';
+import Main from './Components/Main';
 
 import { makeStyles } from '@material-ui/core';
 import Contextapi from './Contextapi';
@@ -15,7 +15,7 @@ import Contextapi from './Contextapi';
 const useStyles = makeStyles(() => ({  
   
       App : {
-        backgroundColor : '#803DCD',
+        backgroundColor : '#b1adac',
         color: 'white',
         minHeight:"100vh", 
       },

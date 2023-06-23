@@ -1,61 +1,86 @@
-import React from 'react';
-import  { useState,useEffect } from 'react'
-import { List, ListItem, ListItemText } from '@mui/material';
-import axios from "axios";
-import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core'
+import { makeStyles } from "@material-ui/core/styles";
+import { List, ListItem, ListItemText } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { API } from "../../Api/apiWrapper";
+import { NavState } from "../../Contextapi";
 
-const useStyle = makeStyles(()=>({
-  mainList:{
-    overflow: 'auto',height:'83vh',
-    fontFamily: 'gotham-italics'
+const useStyles = makeStyles((theme) => ({
+  mainList: {
+    overflow: 'auto',
+    height: '79vh',
+    color: 'black'
   },
-  list:{
-    textAlign:'center',
-
+  listItem: {
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: '30px',
+    color: 'black',
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent:'center'
+  },
+  listItemText: {
+    marginLeft: theme.spacing(1),
+    color: '#49126f',
+    display:'flex',
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent:'center',
+    "& span": {
+      fontSize:'30px',
+      fontFamily: 'gotham-bold',
+      padding: "20px 20px"
+    }
   }
-}))
+}));
 
 const ListAos = () => {
+  const { navvalue, setNavvalue } = NavState();
+  const [mydata, setMydata] = useState([]);
+  const classes = useStyles();
 
-  const [mydata, setMydata] = useState();
+  const navigateToMenu = (navigationName) => {
+    setNavvalue([...navvalue, navigationName]);
+  };
 
-  const classes = useStyle();
+  const getListAos = async () => {
+    try {
+      const response = await API.getResearchGroupList();
+      const unTrimmedData = response.map((info) => ({
+        ...info,
+        title: info.title,
+      }));
+      setMydata(unTrimmedData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-
-  const getteacherdata = async () => {
-
-    await axios.get("https://gautamth1254.github.io/Movie-json/db.json").then((response) => {
-      console.log(response)
-      setMydata(response.data[0].movies)
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
-  useEffect(()=>{
-    getteacherdata();
-  },[])
+  useEffect(() => {
+    getListAos();
+  }, []);
 
   return (
-  
     <List className={classes.mainList}>
-      <h1 style={{textAlign:'center'}}>  Please select the Research Group</h1>
-      {mydata?.map((movies) => {
-            const {id,title} = movies;
-      return(     
-       
-      
-          <ListItem button component={Link} key={id} to={`/cue/areaofstudy/${id}`} className={classes.list}>
-            <h4>{id}</h4> &nbsp; &nbsp; &nbsp;
-            <ListItemText primary={title} />
+      {mydata.map((infoList) => {
+        const { id, title } = infoList;
+        const encodedTitle = encodeURIComponent(title);
+        return (
+          <ListItem
+            button
+            component={Link}
+            key={title}
+            to={`/cue/researchgroup/${encodedTitle}`}
+            className={classes.listItem}
+            onClick={() => navigateToMenu(title)}
+          >
+            <ListItemText primary={title} className={classes.listItemText} />
           </ListItem>
-        
-     
-      )
-    })}
+        );
+      })}
     </List>
- 
   );
-}
+};
 
-export default ListAos
+export default ListAos;
