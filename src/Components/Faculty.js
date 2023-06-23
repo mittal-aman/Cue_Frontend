@@ -33,9 +33,9 @@ const useStyles = makeStyles(() => ({
   },
   arrow: {
     position: "absolute",
-    top: "calc(50% - 40px)",
+    top: "calc(38% - 20px)",
     margin: "auto",
-    height: "90px",
+    height: "200px",
     width: "50px",
     transition: "transform 0.3s ease",
     "&:hover": {

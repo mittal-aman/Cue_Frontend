@@ -55,7 +55,7 @@ const Main = () => {
           <Route exact path="/cue/researchgroup/:title" element={<Research />} />
           <Route exact path="/cue/facultydirectory" element={<Faculty />} />
           <Route exact path="/cue/staff" element={<Staff />} />
-          <Route exact path="/cue/studentclub" element={<StudentClub />} />
+          <Route exact path="/cue/studentclub" element={<Faculty />} />
           <Route exact path="/cue/departmentmap" element={<DepartmentMap />} />
           <Route exact path="/cue/event" element={<Event />} />
         </Routes>

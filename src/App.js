@@ -1,8 +1,8 @@
 //import logo from './logo.svg';
+import 'normalize.css';
 import { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import 'normalize.css';
 
 import AlertDialog from "./Components/AlertBox";
 import Header from './Components/Header';

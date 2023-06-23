@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { NavState } from '../../Contextapi';
 import { API } from '../../Api/apiWrapper';
+import { NavState } from '../../Contextapi';
 
 const useStyles = makeStyles((theme) => ({
   mainList: {
@@ -11,20 +11,27 @@ const useStyles = makeStyles((theme) => ({
     height: '79vh',
     color: 'black'
   },
-  centerText: {
-    textAlign: 'center',
-    fontFamily: 'gotham-medium',
-    color: 'black'
-  },
   listItem: {
     display: 'flex',
     alignItems: 'center',
-    color: 'black'
+    fontSize: '30px',
+    color: 'black',
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent:'center'
   },
   listItemText: {
     marginLeft: theme.spacing(1),
-    fontFamily: 'gotham-mediumitalic',
-    color: 'black'
+    color: '#49126f',
+    display:'flex',
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent:'center',
+    "& span": {
+      fontSize:'30px',
+      fontFamily: 'gotham-bold',
+      padding: "20px 20px"
+    }
   }
 }));
 
@@ -40,7 +47,11 @@ const ListAos = () => {
   const getListAos = async () => {
     try {
       const response = await API.getAreaOfStudyList();
-      setMydata(response);
+      const unTrimmedData = response.map((info) => ({
+        ...info,
+        title: info.title
+      }));
+      setMydata(unTrimmedData);
     } catch (error) {
       console.log(error);
     }
@@ -52,19 +63,18 @@ const ListAos = () => {
 
   return (
     <List className={classes.mainList}>
-      <h1 className={classes.centerText}>Please select the Department</h1>
       {mydata.map((infoList) => {
         const { id, title } = infoList;
+        const encodedTitle = encodeURIComponent(title);
         return (
           <ListItem
             button
             component={Link}
             key={title}
-            to={`/cue/areaofstudy/${title}`}
+            to={`/cue/areaofstudy/${encodedTitle}`}
             className={classes.listItem}
             onClick={() => navigateToMenu(title)}
           >
-            <h4>{id}.</h4>&nbsp; &nbsp; &nbsp;
             <ListItemText primary={title} className={classes.listItemText} />
           </ListItem>
         );

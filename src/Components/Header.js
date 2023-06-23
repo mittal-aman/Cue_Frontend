@@ -1,16 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import {
-  Grid,
-  makeStyles,
-  Typography,
-  useMediaQuery,
+    Grid,
+    makeStyles,
+    Typography,
+    useMediaQuery
 } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { NavItem } from "../Contextapi";
+import { NavState } from "../Contextapi";
 import logooo from "../images/logo.png";
-import zIndex from "@material-ui/core/styles/zIndex";
 
 const titleStyle = {
   margin: "auto",
@@ -67,13 +66,19 @@ const useStyles = makeStyles((theme) => ({
 const theme = createTheme({
   // Customize your theme here...
 });
+const environments = {
+  test: "https://localhost:8443",
+  prod: "https://128.122.136.144:8443"
+};
 
 const Header = () => {
   const classes = useStyles();
   const [deptName, setDeptName] = useState("Department Name");
   const getDeptName = async () => {
     try {
-      const response = await axios.get("https://localhost:8443/CUE/F");
+      const baseURL = process.env.NODE_ENV === 'development' ? environments.test : environments.prod;
+  
+      const response = await axios.get(`${baseURL}/CUE/F`);
       setDeptName(response.data.deptName);
     } catch (error) {
       console.error(error);
@@ -85,30 +90,11 @@ const Header = () => {
   }, []);
 
   const location = useLocation();
-
-  const getCurrentTitle = () => {
-    switch (location.pathname) {
-      case "/":
-      default:
-        return "Faculty";
-      case "/cue/areaofstudy":
-        return "Area Of Study";
-      case "/cue/researchgroup":
-        return "Research Group";
-      case "/cue/facultydirectory":
-        return "Faculty Directory";
-      case "/cue/staff":
-        return "Staff Directory";
-      case "/cue/studentclub":
-        return "Student Club";
-      case "/cue/departmentmap":
-        return "Department Map";
-      case "/cue/event":
-        return "Events";
-    }
-  };
-
-  const { navvalue } = useContext(NavItem);
+  const { navvalue, setNavvalue } = NavState();
+  const navigateToMenu = (navigationName) => {
+    navvalue.push(navigationName)
+    setNavvalue(navvalue);
+  }
   const lastValue = navvalue[navvalue.length - 1].toUpperCase();
 
   const isSmScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -118,7 +104,7 @@ const Header = () => {
       <Grid container className={classes.gridmain1}>
         <Grid item xs={12} sm={6} md={8} style={{paddingLeft:16,paddingTop:4}}>
           <Link to="/">
-            <img src={logooo} alt="logo" className={classes.logo} style={{ }} />
+            <img onClick={() => navigateToMenu("Faculty")} src={logooo} alt="logo" className={classes.logo} style={{ }} />
           </Link>
         </Grid>
         <Grid item xs={12} sm={6} md={4} style={{ paddingTop: isSmScreen ? "2vh" : "1vh" }}>

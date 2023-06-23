@@ -1,135 +1,177 @@
-import { makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import axios from "axios";
-import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
+import { API } from '../../Api/apiWrapper';
 import LeftArrow from '../../images/LeftArrow.png';
+import noImageAvailable from "../../images/no-image.jpg";
 import RightArrow from '../../images/RightArrow.png';
 
-
-const useStyles = makeStyles(()=>({
-
-  slider:{
+const useStyles = makeStyles(() => ({
+  slider: {
     width: '90%',
     margin: 'auto',
-          
+    alignContent: "center",
+    alignItems: "center"
   },
-  div_box:{
-    height: '30vh',
-    width: '10vw',
-    background: '#eee6f3',
-    margin: '40px 0px',
-    border: '1px solid #ab82c5',
+  divBox: {
+    height: "auto",
+    marginTop: "36px",
+    display: "flex",
+    justifyContent: "center",
+    "& img": {
+      height: "27vh",
+      width:"100%",
+      display: "block",
+      objectFit: "contain",
+      objectPosition: "center",
+    },
   },
-  mainGrid:{
-    height: "83vh",
-    width:'100%',
-    // background: 'black',
-
+  arrow: {
+    position: "absolute",
+    top: "calc(50% - 40px)",
+    margin: "auto",
+    height: "90px",
+    width: "50px",
+    transition: "transform 0.3s ease",
+    "&:hover": {
+      transform: "scale(1.2)",
+    },
   },
-
-  para:{
+  mainGrid: {
+    height: "100%",
+    width: '100%'
+  },
+  para: {
+    height: '50%',  
+    margin: '-30px 30px 0 30px',
+    alignItems: "center",
+    display: "flex"
+  },
+  carousel: {
     height: '50%',
-    // background: 'blue',
-  },
-  carousel:{
-    height: '50%',
-    width: '50%',
-    zIndex:'1',
-    // background: 'white',
+    overflowY:'auto'
   }
-  
-
-}))
+}));
 
 const AreaofStudy = () => {
-
-  const [mydata,setMydata] = useState();
-
-  const {id} =  useParams();
-
-
+  const [teacherData, setTeacherData] = useState(null);
+  const { title } = useParams();
+  const decodedTitle = decodeURIComponent(title);
   const classes = useStyles();
 
-  
-  useEffect(()=>{
-    axios.get("https://gautamth1254.github.io/Movie-json/db.json").then((response) => {
-      console.log(response.data[0].movies[id-1])
-      // const users = Object.values(response.data[0].movies);
-      // console.log(typeof users);      
-      setMydata(response.data[0].movies[id-1])
-    }).catch((err) => {
-      console.log(err)
-    })
+  const getAos = useCallback(async () => {
+    try {
+      const response = await API.getResearchGroup(decodedTitle);
+      console.log(response)
+      setTeacherData(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [decodedTitle]);
 
-
-  },[id])
-
-
+  useEffect(() => {
+    getAos();
+  }, [getAos]);
 
   const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
-    <img src={LeftArrow} alt="prevArrow" {...props} style={{height:'50px',width:"40px",zIndex:'2',left: '-50px'}}/>
+    <img src={LeftArrow} alt="prevArrow" {...props} style={{ height: '50px', width: "40px", zIndex: '2', left: '-50px' }} />
   );
 
   const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
-    <img src={RightArrow} alt="nextArrow" {...props} style={{height:'50px',width:"40px",zIndex:'2',right: '-50px'}}/>
+    <img src={RightArrow} alt="nextArrow" {...props} style={{ height: '50px', width: "40px", zIndex: '2', right: '-50px' }} />
   );
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     navigate('/')
-  //   }, 5000)
-  // }, [])
-
-  const settings = {  
-    centerMode: true,
-    centerPadding: "0px",
+  const sliderSettings = {
+    swipeToSlide: true,
+    infinite: false,
+    dots: true,
     speed: 500,
-    rows: 1,
-    slidesToShow: 4,
+    slidesToShow: Math.min(5, teacherData?.personnels?.length|| 0 ),
     nextArrow: <SlickArrowRight />,
-    prevArrow: <SlickArrowLeft />,    
+    prevArrow: <SlickArrowLeft />,
+    dotsClass: "slick-dots slick-thumb",
+    rows: 1
   };
 
-  console.log(id);
-
-  return (
-    <div>
+  if (teacherData?.personnels?.length < 5) {
+    // If true, add the variableWidth property
+    sliderSettings.variableWidth = true;
+  }
+    return (
       <Grid container className={classes.mainGrid}>
-          <Grid item xs={12} className={classes.para}>  
-              <p>hello gautam</p>
-              
-              <h1>{mydata?.title}</h1>
-                
-          </Grid>
-
-
-          <Grid item xs={12} className={classes.carousel}>
-    
-          {/* </Slider> */}
-          
-            <Slider {...settings} className={classes.slider}>
-            
-            {mydata?.Images?.map((image,index) => {
-              
-              return(
-                
-                <div className={classes.div_box} key={id}>
-                    <img src={image} id={index} alt='teacher1' style={{height: '30vh',width: '16.8vw',}} />
-                    <h1 style={{textAlign: 'center',margin: 'auto',fontSize:'1.2vw',paddingTop:'1vh',}}>{mydata?.title}</h1>
-                </div>
-              )
-            })}                     
-              
-            
-            </Slider>
-                        
-            
-          </Grid>
+        <Grid item xs={12} className={classes.para}>
+          <h2>{teacherData?.description}</h2>
+        </Grid>
+        <Grid item xs={12} className={classes.carousel}>
+          <Slider {...sliderSettings} className={classes.slider}>
+          {teacherData?.personnels?.map(({ netId, firstName, lastName, imageUrl, personalUrl, officeNum, title }) => {
+            console.log(imageUrl); // Add this line to log the imageUrl
+            return (
+              <div className={classes.divBox} key={netId}>
+                <a
+                  href={personalUrl}
+                  target="_self"
+                  rel="noopener noreferrer"
+                  style={{ color: "#FFFFFF", textDecoration: "none" }}
+                >
+                  {imageUrl &&
+                    /\.(jpe?g|png|gif)(?:[\?\#].*)?$/i.test(imageUrl) ? (
+                      <img
+                        src={imageUrl}
+                        alt={`${firstName} ${lastName}`}
+                        style={{ height: '27vh' }}
+                      />
+                    ) : (
+                      <img
+                        src={noImageAvailable}
+                        alt="No Image Available"
+                        style={{ height: '27vh' }}
+                      />
+                    )}
+                  <div
+                    style={{
+                      height: '7vh',
+                      background: `linear-gradient(90deg, rgba(199,199,199,1) 1%, rgba(255,255,255,1) 7%,rgba(255,255,255,1) 97%, rgba(199,199,199,1) 99%)`,
+                      overflowY: 'auto'                    
+                    }}
+                  >
+                    <h1
+                      style={{
+                        margin: "auto",
+                        textAlign: "center",
+                        fontSize: "0.82vw",
+                        fontFamily: 'gotham-medium',
+                        paddingTop: "1.4vh",
+                        color: "black",
+                        textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)"
+                      }}
+                    >
+                      {firstName} {lastName}
+                      <br />
+                    </h1>
+                    <h1
+                      style={{
+                        margin: "auto",
+                        textAlign: "center",
+                        fontSize: "0.76vw",
+                        paddingTop: "0.2vh",
+                        color: "black",
+                        textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)"
+                      }}
+                    >
+                      {title.length ? title : 'TITLE'}, {officeNum.length ? officeNum : 'ROOM #'}
+                    </h1>
+                  </div>
+                </a>
+              </div>
+          );
+        })}
+          </Slider>
+        </Grid>
       </Grid>
-    </div>
-  )
-}
+  );
+};
 
-export default AreaofStudy
+export default AreaofStudy;

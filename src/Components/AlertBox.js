@@ -1,11 +1,11 @@
-import { useState, useRef } from "react";
-import { useIdleTimer } from "react-idle-timer";
-import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
+import { useRef, useState } from "react";
+import { useIdleTimer } from "react-idle-timer";
+import { useNavigate } from "react-router-dom";
 
 const AlertBox = () => {
   const [open, setOpen] = useState(false);
