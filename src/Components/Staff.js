@@ -152,7 +152,7 @@ const Staff = () => {
                               textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)"	
                             }}	
                           >	
-                            {title.length ? title : 'TITLE'} , {officeNum.length ? officeNum : 'ROOM #'} 	
+                            {title.length ? title : ''}{title.length && officeNum.length ? ' , ' : ''}{officeNum.length ? officeNum : ''}
                           </h1>	
                           </div>	
                         </a>	

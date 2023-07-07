@@ -32,7 +32,12 @@ const API = {
     const encodedGroupName = encodeURIComponent(groupName);
     return requests.get(`/CUE/rg/${encodedGroupName}`, headers);
   },
-  getStudentClub: headers => requests.get('/CUE/SC', headers)
+  getStudentClub: headers => requests.get('/CUE/sc', headers),
+  getFacultyItems: headers => requests.get('/CUE/facultyTypes', headers),
+  getFacultyByFacultyType: (facultyType, headers) => {
+    const encodedFacultyType = encodeURIComponent(facultyType);
+    return requests.get(`/CUE/F/${encodedFacultyType}`, headers);
+  }
 };
 
 export { API };

@@ -33,12 +33,11 @@ const useStyles = makeStyles((theme) => ({
     background: `linear-gradient(90deg, rgba(36,39,40,1) 0%, rgba(255,255,255,1) 70%)`,
     height: "100%",
     width: "100%",
-    paddingLeft: "2vw",
     paddingTop: "1vh",
     paddingBottom: "1vh",
     fontWeight: "bold",
     fontSize: "7rem",
-    color: "white",
+    color: "black",
   },
   logo: {
     height: "10vh",
@@ -58,8 +57,8 @@ const useStyles = makeStyles((theme) => ({
   },
   title_topic: {
     ...titleStyle,
-    alignItems: "start",
-    justifyContent: "start",
+    marginRight: "2vw",
+    justifyContent: "right"
   },
 }));
 
@@ -125,14 +124,7 @@ const Header = () => {
         </Grid>
       </Grid>
       <Grid container className={classes.gridmain2}>
-        <Grid item xs={12} sm={6} md={8}>
-          <Typography className={classes.title_topic}>{lastValue}</Typography>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Typography style={{ cursor: "pointer" }} className={classes.title}>
-            MORE INFORMATION
-          </Typography>
-        </Grid>
+          <Typography className={classes.title_topic}>{lastValue}</Typography> 
       </Grid>
     </div>
   );

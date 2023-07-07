@@ -12,7 +12,8 @@ import ListResearch from "./Research/ListResearch";
 import Research from "./Research/ResearchGroup";
 import SideNav from "./SideNav";
 import Staff from "./Staff";
-import StudentClub from "./StudentClub";
+import FacultyByFacultyType from "./FacultyByFacultyType";
+
 
 const useStyles = makeStyles(() => ({
   box: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles(() => ({
     // background: "#b1adac",
     overflowY:'auto',
     background: 'linear-gradient(0deg, grey, #dee0e0,grey)',
-    borderRight: "6px solid white",
+    borderLeft: "6px solid #727474",
   },
   grid2: {
     height: "85vh",
@@ -36,7 +37,7 @@ const useStyles = makeStyles(() => ({
     // background: "#b1adac",
     overflowY:'auto',
     background: 'linear-gradient(0deg, grey, #dee0e0,grey)',
-    borderLeft: "6px solid white",
+    borderRight: "6px solid #727474",
   },
 }));
 
@@ -46,6 +47,9 @@ const Main = () => {
 
   return (
     <Grid container className={classes.gridcon}>
+      <Grid item xs={3} className={classes.grid2}>
+        <SideNav />
+      </Grid>
       <Grid item xs={9} className={classes.grid1}>
         <Routes>
           <Route path="/" element={<Faculty />} />
@@ -54,14 +58,12 @@ const Main = () => {
           <Route exact path="/cue/researchgroup/" element={<ListResearch />} />
           <Route exact path="/cue/researchgroup/:title" element={<Research />} />
           <Route exact path="/cue/facultydirectory" element={<Faculty />} />
+          <Route exact path="/cue/facultydirectory/:facultyType" element={< FacultyByFacultyType/>} />
           <Route exact path="/cue/staff" element={<Staff />} />
-          <Route exact path="/cue/studentclub" element={<Faculty />} />
+          {/* <Route exact path="/cue/studentclub" element={<StudentClub />} /> */}
           <Route exact path="/cue/departmentmap" element={<DepartmentMap />} />
           <Route exact path="/cue/event" element={<Event />} />
         </Routes>
-      </Grid>
-      <Grid item xs={3} className={classes.grid2}>
-        <SideNav />
       </Grid>
       {location.pathname !== "/" && <AlertDialog />}
     </Grid>

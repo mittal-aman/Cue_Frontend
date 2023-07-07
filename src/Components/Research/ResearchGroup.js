@@ -10,7 +10,7 @@ import RightArrow from '../../images/RightArrow.png';
 
 const useStyles = makeStyles(() => ({
   slider: {
-    width: '90%',
+    width: '85%',
     margin: 'auto',
     alignContent: "center",
     alignItems: "center"
@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     "& img": {
-      height: "27vh",
+      height: "100%",
       width:"100%",
       display: "block",
       objectFit: "contain",
@@ -30,9 +30,9 @@ const useStyles = makeStyles(() => ({
   },
   arrow: {
     position: "absolute",
-    top: "calc(50% - 40px)",
+    top: "calc(22%)",
     margin: "auto",
-    height: "90px",
+    height: "200px",
     width: "50px",
     transition: "transform 0.3s ease",
     "&:hover": {
@@ -45,13 +45,17 @@ const useStyles = makeStyles(() => ({
   },
   para: {
     height: '50%',  
-    margin: '-30px 30px 0 30px',
+    margin: '-30px 30px 0 85px',
     alignItems: "center",
     display: "flex"
   },
   carousel: {
     height: '50%',
     overflowY:'auto'
+  },
+  centeredSlider: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
   }
 }));
 
@@ -76,11 +80,11 @@ const AreaofStudy = () => {
   }, [getAos]);
 
   const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
-    <img src={LeftArrow} alt="prevArrow" {...props} style={{ height: '50px', width: "40px", zIndex: '2', left: '-50px' }} />
+    <img src={LeftArrow} alt="prevArrow" {...props} className={classes.arrow} style={{ left: '-5.0vw' }} />
   );
 
   const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
-    <img src={RightArrow} alt="nextArrow" {...props} style={{ height: '50px', width: "40px", zIndex: '2', right: '-50px' }} />
+    <img src={RightArrow} alt="nextArrow" {...props} className={classes.arrow} style={{  right: '-5.0vw'}} />
   );
 
   const sliderSettings = {

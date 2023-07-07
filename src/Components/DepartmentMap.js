@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NavItem } from '../Contextapi';
-import noImageAvailable from "../images/no-image.jpg";
+import noImageAvailable from "../images/CUE.jpg";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const DepartmentMap = () => {

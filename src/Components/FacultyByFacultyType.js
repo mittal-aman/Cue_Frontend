@@ -7,6 +7,7 @@ import RightArrow from "../images/RightArrow.png";
 import LeftArrow from "../images/LeftArrow.png";
 import { API } from "../Api/apiWrapper";
 import noImageAvailable from "../images/no-image.jpg";
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   slider: {
@@ -50,13 +51,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Faculty = () => {
+const FacultyByFacultyType = () => {
   const [teacherData, setTeacherData] = useState([]);
+  const { facultyType } = useParams();
   const classes = useStyles();
 
   const getTeacherData = async () => {
     try {
-      const { personnels } = await API.getFaculty();
+      const { personnels } = await API.getFacultyByFacultyType(facultyType);
       setTeacherData(personnels);
     } catch (error) {
       console.log(error);
@@ -167,4 +169,4 @@ const Faculty = () => {
   );
 };
 
-export default Faculty;
+export default FacultyByFacultyType;

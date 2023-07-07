@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     "& span": {
       fontSize:'30px',
       fontFamily: 'gotham-bold',
-      padding: "20px 20px"
+      padding: "7px 7px"
     }
   }
 }));
